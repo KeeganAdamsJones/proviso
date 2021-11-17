@@ -32,9 +32,11 @@ Poviso
 			<div class='center'>
 				<img src="images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
 			</div>
-		<!-- Tie in the TopNav file and where I want it.
-		<jsp:include page="TopNav.jsp" flush="true" /> -->
-	
+		
+		<!-- Tie in the TopNav file and where I want it. -->
+		<jsp:include page="topNav.jsp" flush="true" />	
+		
+		
 		<main>
 				<p class="center">Book your stay in our first class luxury suites today!
 				</p>
