@@ -72,13 +72,17 @@ public class provisoServlet extends HttpServlet
 				case "showAboutUs":
 					url = base + "About.jsp";
 					break;
-				/* ** TO DO ** showBookNow  showSearchReservations
-				case "showArtists":
-					url = base + "artists/List.jsp";
+				case "showBooking":
+					url = base + "reservations/new.jsp";
 					break;
-				case "newArtist":
-					url = base + "artists/New.jsp";
+				case "showReservations":
+					url = base + "reservations/details.jsp";
 					break;
+				
+				case "newReservation":
+					url = base + "reservation/new.jsp";
+					break;
+					/*
 				case "artistDetails":
 					url = base + "artists/Details.jsp";
 					break;
@@ -100,10 +104,20 @@ public class provisoServlet extends HttpServlet
 				case "albumDetails":
 					url = base + "albums/Details.jsp";
 					break;
-				case "createAlbum":
-					createAlbum(request, response);
-					url = base + "index.jsp";
+				*/
+				case "confirmReservation":
+					// This is coming from /reservations/new.jsp
+					// We want to forward this request to the /confirm.jsp
+					
+					url = base + "reservations/confirm.jsp";
 					break;
+				case "createReservation":
+					// This is coming from the /reservations/confirm.jsp
+					// Take the request data and put it in the database
+					createReservation(request, response);
+					url = base;
+					break;
+				/*
 				case "updateAlbum":
 					updateAlbum(request, response);
 					url = base + "index.jsp";
@@ -131,7 +145,7 @@ public class provisoServlet extends HttpServlet
 		String user_name = request.getParameter("userName");
 		String password = request.getParameter("password");
 		String customer_id = request.getParameter("customerId"); 
-		
+/*		
 		Customer customerToUpdate = new Customer(); 
 		customerToUpdate.setcustomer_id(Long.parseLong(customer_id));
 		customerToUpdate.setfirst_name(first_name);
@@ -144,9 +158,11 @@ public class provisoServlet extends HttpServlet
 		
 		System.out.println("Customer Id: " + customer_id + "; First name: " + first_name + "; Last name: " + last_name + "; User Name: " + user_name + "; Password: " + password);
 		System.out.println("Updated customer: " + customer_id);
-	
+	*/
 	}
-
+	
+	
+/*
 	private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String customer_id = request.getParameter("customer_id");
@@ -171,6 +187,7 @@ public class provisoServlet extends HttpServlet
 		System.out.println("Added customer: {First Name: '" + first_name + "'; Last Name: '" + last_name + "'; User Name: '" + user_name + "'; Password: '" + password + "'}");
 	}
 	
+	*/
 	private void createReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String reservation_id = request.getParameter("reservation");
@@ -179,6 +196,7 @@ public class provisoServlet extends HttpServlet
 		String guests = request.getParameter("guests");
 		String loyaltyPoints = request.getParameter("points");
 		String customer_id = request.getParameter("customer");
+	/*
 		
 		Reservation newReservation = new Reservation(); 
 		newReservation.setreservation_id(reservation_id);
@@ -193,6 +211,7 @@ public class provisoServlet extends HttpServlet
 	
 		System.out.println(newReservation.toString());
 		System.out.println(String.format("Reservation{roomSize=%s, amenities=%s, guests=%s, loyaltyPoints=%s, customer_id=%s}", roomSize, amenities, guests, loyaltyPoints, customer_id));
+	*/
 	}
 	
 	private void updateReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -204,7 +223,7 @@ public class provisoServlet extends HttpServlet
 		String loyaltyPoints = request.getParameter("loyaltyPoints");
 		String customer_id = request.getParameter("customer");
 		
-		Reservation updatedReservation = new Reservation();
+		/*Reservation updatedReservation = new Reservation();
 		updatedReservation.setreservation_id(reservation_id);
 		updatedReservation.setroomSize(roomSize);
 		updatedReservation.setamenities(amenities));
@@ -218,9 +237,10 @@ public class provisoServlet extends HttpServlet
 		reservationDao.update(updatedReservation);
 		
 		System.out.println(updatedReservation.toString());
-
+*/
 	}
 	
+	/*
 	private void deleteReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String reservation_id = request.getParameter("reservation_id");
@@ -230,5 +250,5 @@ public class provisoServlet extends HttpServlet
 				
 		System.out.println("Canceled reservation: " + reservation_id);
 	
-	}
+	}*/
 }

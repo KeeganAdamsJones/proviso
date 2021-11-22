@@ -24,25 +24,26 @@ Poviso
 	</head>
 	
 	<link
-		rel="stylesheet" href="site.css">
+		rel="stylesheet" href="./css/site.css">
 			
 	
 	<body>
 		
-			<div class='center'>
+			<div class="logo">
 				<img src="images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
 			</div>
 		
-		<!-- Tie in the TopNav file and where I want it. -->
+			
+		<!-- Tie in the topNav file and where I want it. -->
 		<jsp:include page="topNav.jsp" flush="true" />	
-		
+	
 		
 		<main>
-				<p class="center">Book your stay in our first class luxury suites today!
-				</p>
+				<h1 class="center">Book your stay in our first class luxury suites today!</h1>
+			
 				
-				<div class='center'>
-					<img src="images/hotelRoom.jpeg" alt="hotel room photo" width="600" >
+				<div class='hotelImg'>
+					<img src="images/hotelRoom.jpeg" alt="hotel room photo" width="500" >
 				</div>
 		
 		
@@ -50,9 +51,9 @@ Poviso
 		
 		</main>
 		
-		<!-- Page footer
-		<jsp:include page="Footer.jsp" flush="true" />
-		 -->
+		<!-- Page footer	 -->
+		<!--  jsp:include page="footer.jsp" flush="true" />-->
+	
 		 
 	
 	</body>
