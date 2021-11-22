@@ -51,3 +51,27 @@ CREATE TABLE reservation (
 		REFERENCES customer(customer_id)
 ); 
 
+-- insert customer statements 
+INSERT INTO customer(customer_id, first_name, last_name, user_name, password)
+	VALUES((SELECT customer_id FROM customer WHERE last_name = 'Jones'),'Keegan', 'Jones', 'keeganadamsjones@gmail.com', 'pass1111');
+
+INSERT INTO customer(customer_id, first_name, last_name, user_name, password)
+	VALUES((SELECT customer_id FROM customer WHERE last_name = 'Brooklyn'),'Nellie', 'Brooklyn', 'nelliebrooklyns@gmail.com', 'pass1112');
+
+INSERT INTO customer(customer_id, first_name, last_name, user_name, password)
+	VALUES((SELECT customer_id FROM customer WHERE last_name = 'Grace'),'Olivia', 'Grace', 'oliviagrace@gmail.com', 'pass1113');
+
+	
+-- ***** TODO I think that the reservation_id and customer_id selection are wrong??	
+-- ***** TODO I think that the amenities are wrong??	
+-- insert reservation statements
+INSERT INTO reservation(reservation_id, roomSize, customer_id, amenities, guests, loyaltyPoints)
+	VALUES((SELECT reservation_id FROM reservation WHERE last_name = 'Jones'), 'King',(SELECT customer_id FROM customer WHERE last_name = 'Jones'),'wifi breakfast', '1-2', '150');
+	
+INSERT INTO reservation(reservation_id, roomSize, customer_id, amenities, guests, loyaltyPoints)
+	VALUES((SELECT reservation_id FROM reservation WHERE last_name = 'Brooklyn'), 'doubleFull',(SELECT customer_id FROM customer WHERE last_name = 'Brooklyn'),'wifi breakfast parking', '1-2', '150');
+	
+INSERT INTO reservation(reservation_id, roomSize, customer_id, amenities, guests, loyaltyPoints)
+	VALUES((SELECT reservation_id FROM reservation WHERE last_name = 'Grace'), 'doubleQueen',(SELECT customer_id FROM customer WHERE last_name = 'Grace'),'wifi', '3-5', '150');
+	
+
