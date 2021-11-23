@@ -8,12 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-/*
-import proviso.model.customer;
-import proviso.model.reservation;
-import proviso.service.impl.JdbccCustomerDao;
+
+import proviso.model.Reservation;
+import proviso.model.Customer;
+import proviso.model.Reservation;
+import proviso.service.impl.JdbcCustomerDao;
 import proviso.service.impl.JdbcReservationDao;
-*/
+import proviso.service.dao.CustomerDao;
 
 
 /*
@@ -82,21 +83,21 @@ public class provisoServlet extends HttpServlet
 				case "newReservation":
 					url = base + "reservation/new.jsp";
 					break;
-					/*
-				case "artistDetails":
-					url = base + "artists/Details.jsp";
+					
+				case "customerDetails":
+					url = base + "customers/Details.jsp";
 					break;
 				case "updateArtist":
-					updateArtist(request, response);
-					url = base + "artists/List.jsp";
+					updateCustomer(request, response);
+					url = base + "customers/List.jsp";
 					break;
-				case "deleteArtist": 
-					deleteArtist(request, response);
-					url = base + "artists/List.jsp";
+				case "deleteCustomer": 
+					deleteCustomer(request, response);
+					url = base + "customers/List.jsp";
 					break;
-				case "createArtist":
-					createArtist(request, response);
-					url = base + "artists/List.jsp";
+				case "createCustomer":
+					createCustomer(request, response);
+					url = base + "customers/List.jsp";
 					break;
 				case "newAlbum":
 					url = base + "albums/New.jsp";
@@ -104,7 +105,7 @@ public class provisoServlet extends HttpServlet
 				case "albumDetails":
 					url = base + "albums/Details.jsp";
 					break;
-				*/
+			
 				case "confirmReservation":
 					// This is coming from /reservations/new.jsp
 					// We want to forward this request to the /confirm.jsp
@@ -117,19 +118,19 @@ public class provisoServlet extends HttpServlet
 					createReservation(request, response);
 					url = base;
 					break;
-				/*
-				case "updateAlbum":
-					updateAlbum(request, response);
+				
+				case "updateReservation":
+					updateReservation(request, response);
 					url = base + "index.jsp";
 					break;
-				case "showAlbums":
+				case "showReservation":
 					url = base + "index.jsp";
 					break;
-				case "deleteAlbum":
-					deleteAlbum(request, response);
+				case "deleteReservation":
+					deleteReservation(request, response);
 					url = base + "index.jsp";
 					break;
-					*/
+				
 			}
 		}
 
@@ -145,24 +146,24 @@ public class provisoServlet extends HttpServlet
 		String user_name = request.getParameter("userName");
 		String password = request.getParameter("password");
 		String customer_id = request.getParameter("customerId"); 
-/*		
+		
 		Customer customerToUpdate = new Customer(); 
-		customerToUpdate.setcustomer_id(Long.parseLong(customer_id));
-		customerToUpdate.setfirst_name(first_name);
-		customerToUpdate.setlast_name(last_name);
-		customerToUpdate.setuser_name(user_name);
-		customerToUpdate.setpassword(password);
+		customerToUpdate.setCustomer_id(Long.parseLong(customer_id));
+		customerToUpdate.setFirst_name(first_name);
+		customerToUpdate.setLast_name(last_name);
+		customerToUpdate.setUser_name(user_name);
+		customerToUpdate.setPassword(password);
 		
 		JdbcCustomerDao customerDao = new JdbcCustomerDao(); 
 		customerDao.update(customerToUpdate);
 		
 		System.out.println("Customer Id: " + customer_id + "; First name: " + first_name + "; Last name: " + last_name + "; User Name: " + user_name + "; Password: " + password);
 		System.out.println("Updated customer: " + customer_id);
-	*/
+
 	}
 	
 	
-/*
+
 	private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String customer_id = request.getParameter("customer_id");
@@ -181,74 +182,92 @@ public class provisoServlet extends HttpServlet
 		String user_name = request.getParameter("user_name");
 		String password = request.getParameter("password");
 	
-		JdbcCustomerDao artistDao = new JdbcCustomerDao(); 
+		JdbcCustomerDao customerDao = new JdbcCustomerDao();
+	
 		customerDao.add(new Customer(first_name, last_name, user_name, password));
 	
 		System.out.println("Added customer: {First Name: '" + first_name + "'; Last Name: '" + last_name + "'; User Name: '" + user_name + "'; Password: '" + password + "'}");
 	}
 	
-	*/
+	
 	private void createReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		String reservation_id = request.getParameter("reservation");
-		String roomSize = request.getParameter("room size");
-		String amenities = request.getParameter("amenities");
+		// TODO: Remove this comment
+		//Long reservation_id = Long.parseLong(request.getParameter("reservation"));
+		String roomSize = request.getParameter("roomSize");
+		//String amenities = request.getParameter("amenities");
 		String guests = request.getParameter("guests");
-		String loyaltyPoints = request.getParameter("points");
+		Boolean loyaltyPoints = Boolean.parseBoolean(request.getParameter("loyaltyPoints").trim());
 		String customer_id = request.getParameter("customer");
-	/*
 		
+		// If they selected to add loyalty points, add 150 points.
+		int pointsToAdd = 0;
+		if(loyaltyPoints) {
+			pointsToAdd = 150;
+			System.out.println("Setting points to 150");
+		}
+		System.out.println("Loyalty Points parameter: <"+loyaltyPoints+">");
+
+		String wifi = request.getParameter("wifi");
+		String breakfast = request.getParameter("breakfast");
+		String parking = request.getParameter("parking");
+		String amenities = "";
+		if (wifi != null) {
+			amenities += "wifi: yes</br>";
+		}
+		//TODO: Add more amenities
+				
 		Reservation newReservation = new Reservation(); 
-		newReservation.setreservation_id(reservation_id);
-		newReservation.setroomSize(roomSize);
-		newReservation.setamenities(amenities);
-		newReservation.setguests(guests);
-		newReservation.setloyaltyPoints(loyaltyPoints);
-		newReservation.setcustomer_id(customer_id);
+		//newReservation.setReservation_id(reservation_id);
+		newReservation.setRoomSize(roomSize);
+		newReservation.setAmenities(amenities);
+		newReservation.setGuests(guests);
+		newReservation.setLoyaltyPoints(pointsToAdd);
+		newReservation.setCustomer_id(customer_id);
 		
 		JdbcReservationDao albumDao = new JdbcReservationDao(); 
 		albumDao.add(newReservation);
 	
 		System.out.println(newReservation.toString());
 		System.out.println(String.format("Reservation{roomSize=%s, amenities=%s, guests=%s, loyaltyPoints=%s, customer_id=%s}", roomSize, amenities, guests, loyaltyPoints, customer_id));
-	*/
+
 	}
 	
 	private void updateReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String reservation_id = request.getParameter("reservation_id");
+		Long reservation_id = Long.parseLong(request.getParameter("reservation_id"));
 		String roomSize = request.getParameter("roomSize");
 		String amenities = request.getParameter("amenities");
 		String guests = request.getParameter("guests");
-		String loyaltyPoints = request.getParameter("loyaltyPoints");
+		Integer loyaltyPoints = Integer.parseInt(request.getParameter("loyaltyPoints"));
 		String customer_id = request.getParameter("customer");
 		
-		/*Reservation updatedReservation = new Reservation();
-		updatedReservation.setreservation_id(reservation_id);
-		updatedReservation.setroomSize(roomSize);
-		updatedReservation.setamenities(amenities));
-		updatedReservation.setguests(guests);
-		updatedReservation.setloyaltyPoints(loyaltyPoints);
-		updatedReservation.setcustomer_id(customer_id);
+		Reservation updatedReservation = new Reservation();
+		updatedReservation.setReservation_id(reservation_id);
+		updatedReservation.setRoomSize(roomSize);
+		updatedReservation.setAmenities(amenities);
+		updatedReservation.setGuests(guests);
+		updatedReservation.setLoyaltyPoints(loyaltyPoints);
+		updatedReservation.setCustomer_id(customer_id);
 		
-		//System.out.println(loyaltyPoints);
+		System.out.println(loyaltyPoints);
 		
 		JdbcReservationDao reservationDao = new JdbcReservationDao(); 
 		reservationDao.update(updatedReservation);
 		
 		System.out.println(updatedReservation.toString());
-*/
+
 	}
 	
-	/*
+
 	private void deleteReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String reservation_id = request.getParameter("reservation_id");
+		Long reservation_id = Long.parseLong(request.getParameter("reservation_id"));
 	
-		JdbcReservationDao albumDao = new JdbcReservationDao(); 
+		JdbcReservationDao reservationDao = new JdbcReservationDao(); 
 		reservationDao.remove(reservation_id);
 				
 		System.out.println("Canceled reservation: " + reservation_id);
 	
-	}*/
+	}
 }

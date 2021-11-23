@@ -9,4 +9,5 @@ import proviso.service.GenericDao;
 
 public interface CustomerDao extends GenericDao<Customer, Long> {
 
+
 }

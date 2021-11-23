@@ -42,7 +42,7 @@ CREATE TABLE reservation (
 	roomSize			Varchar(150)	Not Null, 
 	customer_id			INT				NOT NULL,
 	amenities			VARCHAR(75)		NOT NULL,
-	guests				INT				NOT NULL,
+	guests				VARCHAR(10)		NOT NULL,
 	loyaltyPoints		INT(150)		NOT NULL,
 	
 	PRIMARY KEY(reservation_id),
@@ -52,26 +52,23 @@ CREATE TABLE reservation (
 ); 
 
 -- insert customer statements 
-INSERT INTO customer(customer_id, first_name, last_name, user_name, password)
-	VALUES((SELECT customer_id FROM customer WHERE last_name = 'Jones'),'Keegan', 'Jones', 'keeganadamsjones@gmail.com', 'pass1111');
+INSERT INTO customer(first_name, last_name, user_name, password)
+	VALUES('Keegan', 'Jones', 'keeganadamsjones@gmail.com', 'pass1111');
 
-INSERT INTO customer(customer_id, first_name, last_name, user_name, password)
-	VALUES((SELECT customer_id FROM customer WHERE last_name = 'Brooklyn'),'Nellie', 'Brooklyn', 'nelliebrooklyns@gmail.com', 'pass1112');
+INSERT INTO customer(first_name, last_name, user_name, password)
+	VALUES('Nellie', 'Brooklyn', 'nelliebrooklyns@gmail.com', 'pass1112');
 
-INSERT INTO customer(customer_id, first_name, last_name, user_name, password)
-	VALUES((SELECT customer_id FROM customer WHERE last_name = 'Grace'),'Olivia', 'Grace', 'oliviagrace@gmail.com', 'pass1113');
+INSERT INTO customer(first_name, last_name, user_name, password)
+	VALUES('Olivia', 'Grace', 'oliviagrace@gmail.com', 'pass1113');
 
+
+INSERT INTO reservation(roomSize, customer_id, amenities, guests, loyaltyPoints)
+	VALUES('King',(SELECT customer_id FROM customer WHERE last_name = 'Jones'),'wifi breakfast', '1-2', '150');
 	
--- ***** TODO I think that the reservation_id and customer_id selection are wrong??	
--- ***** TODO I think that the amenities are wrong??	
--- insert reservation statements
-INSERT INTO reservation(reservation_id, roomSize, customer_id, amenities, guests, loyaltyPoints)
-	VALUES((SELECT reservation_id FROM reservation WHERE last_name = 'Jones'), 'King',(SELECT customer_id FROM customer WHERE last_name = 'Jones'),'wifi breakfast', '1-2', '150');
+INSERT INTO reservation(roomSize, customer_id, amenities, guests, loyaltyPoints)
+	VALUES('doubleFull',(SELECT customer_id FROM customer WHERE last_name = 'Brooklyn'),'wifi breakfast parking', '1-2', '150');
 	
-INSERT INTO reservation(reservation_id, roomSize, customer_id, amenities, guests, loyaltyPoints)
-	VALUES((SELECT reservation_id FROM reservation WHERE last_name = 'Brooklyn'), 'doubleFull',(SELECT customer_id FROM customer WHERE last_name = 'Brooklyn'),'wifi breakfast parking', '1-2', '150');
-	
-INSERT INTO reservation(reservation_id, roomSize, customer_id, amenities, guests, loyaltyPoints)
-	VALUES((SELECT reservation_id FROM reservation WHERE last_name = 'Grace'), 'doubleQueen',(SELECT customer_id FROM customer WHERE last_name = 'Grace'),'wifi', '3-5', '150');
+INSERT INTO reservation(roomSize, customer_id, amenities, guests, loyaltyPoints)
+	VALUES('doubleQueen',(SELECT customer_id FROM customer WHERE last_name = 'Grace'),'wifi', '3-5', '150');
 	
 

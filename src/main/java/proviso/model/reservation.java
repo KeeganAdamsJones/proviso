@@ -36,7 +36,7 @@ public class Reservation
 	
 	public Reservation() {}
 	
-	public void setReservation_idd(long reservation_id) 
+	public void setReservation_id(long reservation_id) 
 	{
 		this.reservation_id = reservation_id;
 	}
@@ -66,11 +66,11 @@ public class Reservation
 		return customer_id;
 	}
 	
-	public void setGenre(String amenities)
+	public void setAmenities(String amenities)
 	{
 		this.amenities = amenities;
 	}
-	
+
 	public String getAmenities()
 	{
 		return amenities;
@@ -101,5 +101,10 @@ public class Reservation
 	{
 		return String.format("Reservation{reservation_id=%s, roomSize=%s, customer_id=%s, amenities=%s, guests=%s, loyaltyPoints=%s}", 
 				reservation_id, roomSize, customer_id, amenities, guests, loyaltyPoints);
+	}
+
+	public void setamenities(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 }

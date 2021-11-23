@@ -8,23 +8,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 import proviso.model.Customer;
-import proviso.service.impl.JdbcManager;
+//import proviso.service.impl.JdbcManager;
+import proviso.service.JdbcManager;
+import proviso.service.dao.CustomerDao;
 
 /*
  Keegan Jones
  */
 
+// --------------------------
+// | CLASS                  |
+// |   - member variables   |
+// |   - member functions   |
+// --------------------------
 
-JdbcManager db;  
+
+public class JdbcCustomerDao implements CustomerDao
+{
+    // declare class member variable
+	JdbcManager db;  
 	
-	public JdbcCustomerDao() 
+    //constructor
+	public JdbcCustomerDao()
 	{
-		// constructor
+		// creating new db manager instance
 		db = new JdbcManager();
 	}
 	
 	@Override
-	public void add(Customer entity) 
+	public long add(Customer entity) 
 	{
 		Connection conn = db.getConn(); 
 		Customer newCustomer = entity;
@@ -33,29 +45,43 @@ JdbcManager db;
 		{
 			try 
 			{
+				// TODO: Password needs hashed
+				
 				Statement s = conn.createStatement(); 
-				String sql = "INSERT INTO customer(customer_id, first_name, last_name, user_name, password) VALUES('" + newCustomer.getcustomer_id() + "', '" + newCustomer.getfirst_name() + "', '" + newCustomer.getlast_name() + "', '" + newCustomer.getuser_name() + "', '" + newCustomer.getpassword()");
+				String sql = "INSERT INTO customer(first_name, last_name, user_name, password) VALUES('" + 
+						newCustomer.getFirst_name() + "', '" + 
+						newCustomer.getLast_name() + "', '" + 
+						newCustomer.getUser_name() + "', '" + 
+						newCustomer.getPassword()+ "');" +
+						"SELECT MAX(customer_id) FROM customer;";
 				
 				System.out.println(sql);
 				
+				long customer_id = 0;
 				try
 				{
-					s.executeUpdate(sql);
+					ResultSet output = s.executeQuery(sql);
+					customer_id = output.getLong(0);
 				}
 				finally { s.close(); }
+				
+				// TODO: Get the craeted customer_id from the insert
+				return customer_id;
 			}
 			catch(SQLException ex)
 			{
-				System.out.println("Sorry, we are unable to insert new customer: {First Name = " + newCustomer.getfirst_name() + ";Last Name = " + newCustomer.getlast_name() + "}"); 
+				System.out.println("Sorry, we are unable to insert new customer: {First Name = " + 
+						newCustomer.getFirst_name() + ";Last Name = " + newCustomer.getLast_name() + "}"); 
 				System.out.println(ex.getMessage());
 			}
 		}
+		return 0;
 	}
 
 	@Override
 	public List<Customer> list() {
 		Connection conn = db.getConn();
-		ArrayList<Customer> customers = new ArrayList<Artist>();
+		ArrayList<Customer> customers = new ArrayList<Customer>();
 		
 		if (conn != null) 
 		{
@@ -73,11 +99,11 @@ JdbcManager db;
 						while (rs.next()) 
 						{
 							Customer customer = new Customer();
-							customer.setcustomer_id(rs.getLong(1));
-							customer.setfirst_name(rs.getString(2));
-							customer.setlast_name(rs.getString(3));
-							customer.setuser_name(rs.getString(4));
-							customer.setpassword(rs.getString(5));
+							customer.setCustomer_id(rs.getLong(1));
+							customer.setFirst_name(rs.getString(2));
+							customer.setLast_name(rs.getString(3));
+							customer.setUser_name(rs.getString(4));
+							customer.setPassword(rs.getString(5));
 							customers.add(customer);
 						}
 					}
@@ -145,7 +171,9 @@ JdbcManager db;
 			try 
 			{
 				Statement s = conn.createStatement();
-				String sql = "UPDATE customer SET first_name = '" + entity.getfirst_name() + "', last_name = '" + entity.getlast_name() + "' WHERE customer_id = " + entity.getcustomer_id();
+				String sql = "UPDATE customer SET first_name = '" + entity.getFirst_name() + 
+						"', last_name = '" + entity.getLast_name() + 
+						"' WHERE customer_id = " + entity.getCustomer_id();
 				System.out.println(sql);
 				
 				try 

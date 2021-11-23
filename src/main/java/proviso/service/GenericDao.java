@@ -15,7 +15,7 @@ For example, “ArtistDao extends GenericDao<Artist, Long> {}”
 
 public interface GenericDao<E, K> 
 {
-	void add (E entity); // create 
+	long add (E entity); // create 
 	
 	List<E> list(); // read 
 	

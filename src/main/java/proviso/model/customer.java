@@ -33,7 +33,7 @@ public class Customer
 	// Getters and Setters
 	public Customer() {}
 	
-	public void setCusomer_id(long customer_id) 
+	public void setCustomer_id(long customer_id) 
 	{
 		this.customer_id = customer_id; 
 	}
@@ -83,7 +83,7 @@ public class Customer
 		return password;
 	}
 	
-	// Overrride toString
+	// Override toString
 	@Override
 	public String toString()
 	{

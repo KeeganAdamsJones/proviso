@@ -28,27 +28,42 @@ public class JdbcReservationDao implements ReservationDao {
 	
 	
 	@Override
-	public void add(Reservation entity) // create
+	public long add(Reservation entity) // create
 	{
 		Connection conn = db.getConn(); 
 		Reservation newReservation = entity; 
 		
 		if (conn != null) 
 		{
+			Statement s;
 			try 
 			{
-				Statement s = conn.createStatement(); 
+				s = conn.createStatement(); 	
 				
-				String sql = String.format("INSERT INTO reservation(reservation_id, roomSize, customer_id, amenities, guests, loyaltyPoints) values('%s', %s, '%s', '%s', %s);", 
-						newReservation.getreservation_id(), newReservation.getroomSize(), newReservation.getcustomer_id(), newReservation.amenities(), newReservation.getguests(), newReservation.getloyaltyPoints());
+				// TODO: Use this after login gets setup
+				// long customer_id = newReservation.getCustomer_id();
+				long customer_id = 1;
+				
+				String sql = String.format("INSERT INTO reservation(roomSize, customer_id, amenities, guests, loyaltyPoints)" +
+						" values('%s', %s, '%s', '%s', %s);", 
+						newReservation.getRoomSize(), customer_id, 
+						newReservation.getAmenities(), newReservation.getGuests(), 
+						newReservation.getLoyaltyPoints());
 				
 				System.out.println(sql);
 				
-				try 
-				{
-					s.executeUpdate(sql);
-				}
-				finally { s.close(); }
+				s.executeUpdate(sql);
+				long reservation_id = 0;
+				
+				Statement selectStatement = conn.createStatement();
+				
+				ResultSet rs = selectStatement.executeQuery("SELECT MAX(reservation_id) FROM reservation;");
+				rs.next();
+				reservation_id = rs.getLong(1);
+				System.out.println("Created reservation " + reservation_id);
+				
+				s.close();
+				return reservation_id;
 			}
 			catch (SQLException ex)
 			{
@@ -56,6 +71,7 @@ public class JdbcReservationDao implements ReservationDao {
 				System.out.println(ex.getMessage());
 			}
 		}
+		return 0;
 	}
 
 	@Override
@@ -83,12 +99,12 @@ public class JdbcReservationDao implements ReservationDao {
 						while (rs.next()) 
 						{
 							Reservation reservation = new Reservation();
-							reservation.setreservation_id(rs.getLong(1));
-							reservation.setroomSize(rs.getString(2));
-							reservation.setcustomer_id(rs.getString(3));
+							reservation.setReservation_id(rs.getLong(1));
+							reservation.setRoomSize(rs.getString(2));
+							reservation.setCustomer_id(rs.getString(3));
 							reservation.setamenities(rs.getString(4));
-							reservation.setguests(rs.getString(5));
-							reservation.setloyaltyPoints(rs.getInt(6));
+							reservation.setGuests(rs.getString(5));
+							reservation.setLoyaltyPoints(rs.getInt(6));
 							reservations.add(reservation);
 						}
 					}
@@ -162,7 +178,7 @@ public class JdbcReservationDao implements ReservationDao {
 				Statement s = conn.createStatement(); 
 				
 				String sql = String.format("UPDATE reservation SET reservation_id = '%s', roomSize = %s, customer_id = '%s', amenities = '%s', guests = %s WHERE loyaltyPoints = %s;", 
-						updatedReservation.getreservation_id(), updatedReservation.getroomSize(), updatedReservation.getcustomer_id(), updatedReservation.getamenities(), updatedReservation.getguests(), updatedReservation.getloyaltyPoints());
+						updatedReservation.getReservation_id(), updatedReservation.getRoomSize(), updatedReservation.getCustomer_id(), updatedReservation.getAmenities(), updatedReservation.getGuests(), updatedReservation.getLoyaltyPoints());
 				
 				System.out.println(sql);
 				
