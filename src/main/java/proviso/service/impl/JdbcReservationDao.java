@@ -40,7 +40,7 @@ public class JdbcReservationDao implements ReservationDao {
 			{
 				s = conn.createStatement(); 	
 				
-				// TODO: Use this after login gets setup
+				// TODO: Use this until login gets setup
 				// long customer_id = newReservation.getCustomer_id();
 				long customer_id = 1;
 				

@@ -115,8 +115,9 @@ public class provisoServlet extends HttpServlet
 				case "createReservation":
 					// This is coming from the /reservations/confirm.jsp
 					// Take the request data and put it in the database
-					createReservation(request, response);
-					url = base;
+					// TODO:  Get the reservation-id from this function and send it in the url
+					long reservation_id = createReservation(request, response);
+					url = base + "index.jsp?reservationid="+reservation_id;
 					break;
 				
 				case "updateReservation":
@@ -190,10 +191,9 @@ public class provisoServlet extends HttpServlet
 	}
 	
 	
-	private void createReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	private long createReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		// TODO: Remove this comment
-		//Long reservation_id = Long.parseLong(request.getParameter("reservation"));
+		
 		String roomSize = request.getParameter("roomSize");
 		//String amenities = request.getParameter("amenities");
 		String guests = request.getParameter("guests");
@@ -215,7 +215,12 @@ public class provisoServlet extends HttpServlet
 		if (wifi != null) {
 			amenities += "wifi: yes</br>";
 		}
-		//TODO: Add more amenities
+		if (breakfast != null) {
+			amenities += "breakfast: yes</br>";
+		}
+		if (parking != null) {
+			amenities += "parking: yes</br>";
+		}
 				
 		Reservation newReservation = new Reservation(); 
 		//newReservation.setReservation_id(reservation_id);
@@ -225,12 +230,14 @@ public class provisoServlet extends HttpServlet
 		newReservation.setLoyaltyPoints(pointsToAdd);
 		newReservation.setCustomer_id(customer_id);
 		
-		JdbcReservationDao albumDao = new JdbcReservationDao(); 
-		albumDao.add(newReservation);
+	
+		JdbcReservationDao reservationDao = new JdbcReservationDao(); 
+		long reservation_id = reservationDao.add(newReservation);
 	
 		System.out.println(newReservation.toString());
 		System.out.println(String.format("Reservation{roomSize=%s, amenities=%s, guests=%s, loyaltyPoints=%s, customer_id=%s}", roomSize, amenities, guests, loyaltyPoints, customer_id));
 
+		return reservation_id;
 	}
 	
 	private void updateReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
