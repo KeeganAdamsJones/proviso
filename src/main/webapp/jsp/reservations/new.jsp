@@ -96,8 +96,7 @@ Poviso
     <!-- This checks to see if the user is logged in and redirects if they are not -->
     
     <!-- Page footer	 -->
-		<!--  jsp:include page="footer.jsp" flush="true" />-->
-	
+		<jsp:include page="../footer.jsp" flush="true" />	
 		 
 	
 	</body>
