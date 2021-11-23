@@ -38,8 +38,10 @@ Poviso
     
         
     <!-- 2: Create Form to accept new reservation -->
+    	<h1 >New Reservation Booking</h1><br><br>
+    	
     	<div class="center-form width-35">
-			<h2>New Booking Form</h2>
+	
 		<form>
 			<input type="hidden" name="action" value="confirmReservation" />
 						
@@ -81,6 +83,7 @@ Poviso
 	
 	        <!-- Submit Button -->
 	        <input type="submit" value="Submit">
+	        <br><br>
         </form>
         </div>
         

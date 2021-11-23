@@ -11,7 +11,14 @@ body {
   background-color: #bfd1d6;
 }
 
+h1 {
+    width: 100%;
+    text-align:center;
+}
+
 .center-form {
+	display: flex;
+	align-items: center;
 	justify-content: center;
 }
 
@@ -37,14 +44,14 @@ body {
     border-radius: 3px;
     margin: 0 auto 60 auto;
     padding: 8px;
-    width: 980; 
+    width: 100%; 
     
 }
 
 /* Add a black background color to the top navigation */
 .topNav {
   background-color: #333;
-  overflow: hidden;
+  overflow: auto;
 }
 
 /* Style the links inside the navigation bar */
@@ -55,7 +62,7 @@ body {
   padding: 10px 10px;
   text-decoration: none;
   font-size: 15px;
-  width: 50;
+  width: 18%;
   white-space: nowrap;
 }
 

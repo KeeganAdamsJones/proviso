@@ -43,8 +43,10 @@ Poviso
     %>
         
     <!-- 2: Output Summary of Form to confirm new reservation -->
-    	<div class="container py-5 width-35">
-			<h2>New Booking Form</h2>
+    	<h1>New Reservation Booking</h1>
+    	
+    	<div class="center-form width-35">
+			
 		<form>
 			<input type="hidden" name="action" value="createReservation" />
 						

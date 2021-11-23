@@ -39,7 +39,7 @@ Poviso
 	
 		
 		<main>
-				<h1 class="center">Book your stay in our first class luxury suites today!</h1>
+				<h1>Book your stay in our first class luxury suites today!</h1>
 			
 				
 				<div class='hotelImg'>
