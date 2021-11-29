@@ -42,7 +42,7 @@ CREATE TABLE reservation (
 	roomSize			Varchar(150)	Not Null, 
 	customer_id			INT				NOT NULL,
 	amenities			VARCHAR(75)		NOT NULL,
-	guests				INT				NOT NULL,
+	guests				VARCHAR(10)		NOT NULL,
 	loyaltyPoints		INT(150)		NOT NULL,
 	
 	PRIMARY KEY(reservation_id),
@@ -50,4 +50,25 @@ CREATE TABLE reservation (
 	FOREIGN KEY(customer_id)
 		REFERENCES customer(customer_id)
 ); 
+
+-- insert customer statements 
+INSERT INTO customer(first_name, last_name, user_name, password)
+	VALUES('Keegan', 'Jones', 'keeganadamsjones@gmail.com', 'pass1111');
+
+INSERT INTO customer(first_name, last_name, user_name, password)
+	VALUES('Nellie', 'Brooklyn', 'nelliebrooklyns@gmail.com', 'pass1112');
+
+INSERT INTO customer(first_name, last_name, user_name, password)
+	VALUES('Olivia', 'Grace', 'oliviagrace@gmail.com', 'pass1113');
+
+
+INSERT INTO reservation(roomSize, customer_id, amenities, guests, loyaltyPoints)
+	VALUES('King',(SELECT customer_id FROM customer WHERE last_name = 'Jones'),'wifi breakfast', '1-2', '150');
+	
+INSERT INTO reservation(roomSize, customer_id, amenities, guests, loyaltyPoints)
+	VALUES('doubleFull',(SELECT customer_id FROM customer WHERE last_name = 'Brooklyn'),'wifi breakfast parking', '1-2', '150');
+	
+INSERT INTO reservation(roomSize, customer_id, amenities, guests, loyaltyPoints)
+	VALUES('doubleQueen',(SELECT customer_id FROM customer WHERE last_name = 'Grace'),'wifi', '3-5', '150');
+	
 

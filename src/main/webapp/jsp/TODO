@@ -1,0 +1,8 @@
+
+
+
+Database:
+* customers/users/whatever for login
+* reservations to store the reservations
+	- confirmation id
+	- user id
