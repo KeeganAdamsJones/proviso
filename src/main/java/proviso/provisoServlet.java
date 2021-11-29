@@ -68,7 +68,7 @@ public class provisoServlet extends HttpServlet
 					url = base;
 					break;
 				case "showContactUs":
-					url = base + "Contact.jsp";
+					url = base + "contact.jsp";
 					break;
 				case "showAboutUs":
 					url = base + "About.jsp";

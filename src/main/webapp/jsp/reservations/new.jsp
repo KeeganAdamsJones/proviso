@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
-<%@include file="../login/checklogin.jsp" %> 
+<%@include file="../login/login.jsp" %> 
 
 <!-- 
 Keegan Jones
-Michael McNulty
 CSD - 460 Capstone
 Poviso
 11/17/2021
@@ -30,7 +29,8 @@ Poviso
 		<%
 			if(session.getAttribute("login")==null || session.getAttribute("login")==" ")
 			{
-				response.sendRedirect("login.jsp");
+		// TODO is this correct??
+				response.sendRedirect("../login/login.jsp");
 			}
 		%>
 			<div class="logo">
