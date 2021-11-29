@@ -23,8 +23,7 @@ Poviso
 	<title>Proviso</title>
 	</head>
 	
-	<link
-		rel="stylesheet" href="./css/site.css">
+	<link rel="stylesheet" href="./css/site.css">
 			
 	
 	<body>

@@ -5,6 +5,7 @@
 
 <!-- 
 Keegan Jones
+Michael McNulty
 CSD - 460 Capstone
 Poviso
 11/17/2021
@@ -25,7 +26,13 @@ Poviso
 			
 	
 	<body>
-		
+		<!-- This checks to see if the user is signed in before loading the page, if the user is not signed in, they are redirected to the login page. -->
+		<%
+			if(session.getAttribute("login")==null || session.getAttribute("login")==" ")
+			{
+				response.sendRedirect("login.jsp");
+			}
+		%>
 			<div class="logo">
 				<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
 			</div>
@@ -39,6 +46,8 @@ Poviso
         
     <!-- 2: Create Form to accept new reservation -->
     	<h1 >New Reservation Booking</h1><br><br>
+    	<h2>Welcome <%=session.getAttribute("login") %></h2>
+    	<h2><a href="logout.jsp">Logout</a></h2>
     	
     	<div class="center-form width-35">
 	
