@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
-<%@include file="../login/login.jsp" %> 
+
 
 <!-- 
 Keegan Jones
@@ -12,6 +12,18 @@ Poviso
 
 <!--  page where I can fill in form for new booking-->
 
+
+		<!-- This checks to see if the user is signed in before 
+		loading the page, if the user is not signed in, 
+		they are redirected to the login page. -->
+		<%
+			//if(session.getAttribute("login")==null || session.getAttribute("login")==" ")
+			//{
+		// TODO is this correct??
+				//response.sendRedirect("login/login.jsp");
+			//}
+		%>
+		
  <!DOCTYPE html>
 
 <html>
@@ -25,18 +37,11 @@ Poviso
 			
 	
 	<body>
-		<!-- This checks to see if the user is signed in before loading the page, if the user is not signed in, they are redirected to the login page. -->
-		<%
-			if(session.getAttribute("login")==null || session.getAttribute("login")==" ")
-			{
-		// TODO is this correct??
-				response.sendRedirect("../login/login.jsp");
-			}
-		%>
+
 			<div class="logo">
 				<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
 			</div>
-		
+	
 			
 		<!-- Tie in the topNav file and where I want it. -->
 		<jsp:include page="../topNav.jsp" flush="true" />	
@@ -46,7 +51,7 @@ Poviso
         
     <!-- 2: Create Form to accept new reservation -->
     	<h1 >New Reservation Booking</h1><br><br>
-    	<h2>Welcome <%=session.getAttribute("login") %></h2>
+    	<h2>Welcome <% /*session.getAttribute("login")*/ %></h2>
     	<h2><a href="logout.jsp">Logout</a></h2>
     	
     	<div class="center-form width-35">
@@ -95,19 +100,9 @@ Poviso
 	        <br><br>
         </form>
         </div>
-        
-       
-       
-	    
-    <!-- 3: Server-side: accept form and shove into DB -->
+      
     
-    
-    
-    <!-- 4: Display stored reservation with confirmation number -->
-    
-    <!-- This checks to see if the user is logged in and redirects if they are not -->
-    
-    <!-- Page footer	 -->
+    	<!-- Page footer	 -->
 		<jsp:include page="../footer.jsp" flush="true" />	
 		 
 	

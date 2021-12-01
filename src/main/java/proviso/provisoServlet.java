@@ -56,9 +56,11 @@ public class provisoServlet extends HttpServlet
 		String base = "/jsp/"; // Set the base folder name to jsp.
 		String url = base + "index.jsp"; // set the default url to /jsp/index.jsp.
 		String action = request.getParameter("action"); // get the parameter action value.
+		
 
 		System.out.println("Action value from the doPost method: " + action);
 		System.out.println("URL value from the doPost method: " + url);
+		System.out.println("Requested URL: " + request.getRequestURL());
 
 		if (action != null) 
 		{
@@ -83,41 +85,34 @@ public class provisoServlet extends HttpServlet
 				case "newReservation":
 					url = base + "reservation/new.jsp";
 					break;
-					
-				case "customerDetails":
-					url = base + "customers/Details.jsp";
-					break;
-				case "updateArtist":
-					updateCustomer(request, response);
-					url = base + "customers/List.jsp";
-					break;
-				case "deleteCustomer": 
-					deleteCustomer(request, response);
-					url = base + "customers/List.jsp";
-					break;
+				//TODO do I need this?	
+				//case "customerDetails":
+				//	url = base + "customers/Details.jsp";
+				//	break;
+				//TODO do I need this?	
+				case "updateCustomer":
+				//	updateCustomer(request, response);
+				//	url = base + "customers/List.jsp";
+				//	break;
+					//TODO do I need this?	
+				//case "deleteCustomer": 
+				//	deleteCustomer(request, response);
+				//	url = base + "customers/List.jsp";
+				//	break;
 				case "createCustomer":
 					createCustomer(request, response);
 					url = base + "customers/List.jsp";
-					break;
-				case "newAlbum":
-					url = base + "albums/New.jsp";
-					break;
-				case "albumDetails":
-					url = base + "albums/Details.jsp";
-					break;
-			
+					break;			
 				case "confirmReservation":
 					// This is coming from /reservations/new.jsp
 					// We want to forward this request to the /confirm.jsp
-					
 					url = base + "reservations/confirm.jsp";
 					break;
 				case "createReservation":
 					// This is coming from the /reservations/confirm.jsp
-					// Take the request data and put it in the database
-					// TODO:  Get the reservation-id from this function and send it in the url
-					long reservation_id = createReservation(request, response);
-					url = base + "index.jsp?reservationid="+reservation_id;
+					// Forward this to the /complete.jsp
+					url = base + "reservations/complete.jsp";
+					
 					break;
 				
 				case "updateReservation":
@@ -191,54 +186,6 @@ public class provisoServlet extends HttpServlet
 	}
 	
 	
-	private long createReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-		
-		String roomSize = request.getParameter("roomSize");
-		//String amenities = request.getParameter("amenities");
-		String guests = request.getParameter("guests");
-		Boolean loyaltyPoints = Boolean.parseBoolean(request.getParameter("loyaltyPoints").trim());
-		String customer_id = request.getParameter("customer");
-		
-		// If they selected to add loyalty points, add 150 points.
-		int pointsToAdd = 0;
-		if(loyaltyPoints) {
-			pointsToAdd = 150;
-			System.out.println("Setting points to 150");
-		}
-		System.out.println("Loyalty Points parameter: <"+loyaltyPoints+">");
-
-		String wifi = request.getParameter("wifi");
-		String breakfast = request.getParameter("breakfast");
-		String parking = request.getParameter("parking");
-		String amenities = "";
-		if (wifi != null) {
-			amenities += "wifi: yes</br>";
-		}
-		if (breakfast != null) {
-			amenities += "breakfast: yes</br>";
-		}
-		if (parking != null) {
-			amenities += "parking: yes</br>";
-		}
-				
-		Reservation newReservation = new Reservation(); 
-		//newReservation.setReservation_id(reservation_id);
-		newReservation.setRoomSize(roomSize);
-		newReservation.setAmenities(amenities);
-		newReservation.setGuests(guests);
-		newReservation.setLoyaltyPoints(pointsToAdd);
-		newReservation.setCustomer_id(customer_id);
-		
-	
-		JdbcReservationDao reservationDao = new JdbcReservationDao(); 
-		long reservation_id = reservationDao.add(newReservation);
-	
-		System.out.println(newReservation.toString());
-		System.out.println(String.format("Reservation{roomSize=%s, amenities=%s, guests=%s, loyaltyPoints=%s, customer_id=%s}", roomSize, amenities, guests, loyaltyPoints, customer_id));
-
-		return reservation_id;
-	}
 	
 	private void updateReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{

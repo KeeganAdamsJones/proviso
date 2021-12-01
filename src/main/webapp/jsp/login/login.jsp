@@ -9,6 +9,15 @@ Poviso
 References: Some of the code below was taken and adjusted from the site https://www.onlyxcodes.com/2018/01/login-and-register-using-jsp-mysql.html to fit our needs for this project.
 -->
 
+<!-- This checks to see if the user is already logged in and 
+	directs them back to the new booking page if already logged in. -->
+<%
+	if (session.getAttribute("login")!=null)
+	{
+		response.sendRedirect("?action=newBooking");
+	}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +27,11 @@ References: Some of the code below was taken and adjusted from the site https://
 </head>
 <body>
 	<div class="logo">
-		<img src="images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
+		<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
 	</div>
 	
 	<!-- Topnav File -->
-	<jsp:include page="topNav.jsp" flush="true" />
+	<jsp:include page="../topNav.jsp" flush="true" />
 	
 	<main>
 		<!-- Displays an error message for issues with email or password. -->
@@ -42,7 +51,7 @@ References: Some of the code below was taken and adjusted from the site https://
             	<input type ="submit" name="login_button" value="Login"> 
             </p><br>
             <p>
-            	<a href="registration.jsp">Don't have an account? Click here to sign up</a><br>
+            	<a href="../registration.jsp">Don't have an account? Click here to sign up</a><br>
             </p>
         </form>
 	
@@ -66,27 +75,33 @@ References: Some of the code below was taken and adjusted from the site https://
 					password.focus();
 					return false;
 				}
+				return true;
 			}
 		</script>
 		
 		<!-- This imports the SQL needed to check the login info against the database. -->
 		<%@ page import="java.sql.*" %>
 		
-		<!-- This checks to see if the user is already logged in and directs them back to the main page if already logged in. -->
-		<%
-			if (session.getAttribute("login")!=null)
-			{
-				response.sendRedirect("new.jsp");
-			}
-		%>
+
 		
 		<%
 			try
 			{
 				Class.forName("com.mysql.jdbc.Driver");
 				
-				/* Credentials below need updated. */
-				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbuser","root", "");
+				/* Credentials below need updated. 
+				
+				//Edits made by Keegan Jones
+				// values from JdbcManager
+				jdbcUrl = "jdbc:mysql://localhost:3306/proviso?useSSL=false";
+				jdbcUserName = "proviso_user";
+				jdbcPassword = "MySQL5IsGreat!";
+				*/
+				
+				//This is how Michael had it
+				//Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbuser","root", "");
+				
+				Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/proviso?useSSL=false","proviso_user", "MySQL5IsGreat!");
 				
 				if (request.getParameter("login_button")!=null)
 				{
@@ -114,7 +129,10 @@ References: Some of the code below was taken and adjusted from the site https://
 						{
 							/* This sets the session name and stores the username (Email address) associated with the session */
 							session.setAttribute("login",dbuser_name);
-							response.sendRedirect("new.jsp");
+							// TODO: Move all of this before the HTML because this
+							// redirect will fail since we've already started sending HTML to the
+							// browser
+							response.sendRedirect("../reservations/new.jsp");
 						}
 					}
 					else
@@ -135,6 +153,6 @@ References: Some of the code below was taken and adjusted from the site https://
 	</main>
 	
 	<!-- Page Footer File -->
-	<jsp:include page="footer.jsp" flush="true" />
+	<jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>
