@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+ 
     <!--  page where I can search for reservation by id-->
     
  <!-- 
@@ -51,10 +52,13 @@ Poviso
     	</div>
     	
     <!--  2: Server-side lookup -->
+    
+    
     <!--  3: Page that displays the (previously created) reservation -->
-    
-    
-    <!-- Page footer	 -->
+        
+        
+    	
+    	<!-- Page footer	 -->
 		<jsp:include page="../footer.jsp" flush="true" />	
 		
 	</body>

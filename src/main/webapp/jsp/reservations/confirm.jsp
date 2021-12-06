@@ -108,8 +108,8 @@ Poviso
        
        
 
-    <!-- Page footer	 -->
-		<!--  jsp:include page="footer.jsp" flush="true" />-->
+    	<!-- Page footer	 -->
+		<jsp:include page="../footer.jsp" flush="true" />
 	
 		 
 	
