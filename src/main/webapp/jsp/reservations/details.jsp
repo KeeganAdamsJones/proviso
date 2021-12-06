@@ -26,8 +26,11 @@ Poviso
 	<body>
 	
 		<div class="logo">
-			<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
+			<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148" style="float:center;clear:both;overflow:auto;">
 		</div>
+		
+		<!-- 2: Create Form to accept new reservation -->
+   		<h2 style="float:right;font-size:1em;">Welcome David -- <% /*session.getAttribute("login")*/ %><a href="logout.jsp">Logout?</a></h2>
 		
 			
 	<!-- Tie in the topNav file and where I want it. -->

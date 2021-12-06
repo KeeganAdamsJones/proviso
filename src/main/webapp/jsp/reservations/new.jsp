@@ -31,19 +31,22 @@ Poviso
 	<title>Proviso</title>
 	</head>
 	
-	<link
-		rel="stylesheet" href="../css/site.css">
+	<link rel="stylesheet" href="../css/site.css">
 			
 	
 	<body>
-
+    	
 			<div class="logo">
-				<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
+				<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148" style="float:center;clear:both;overflow:auto;">
 			</div>
+			<!-- 2: Create Form to accept new reservation -->
+    		<h2 style="float:right;font-size:1em;">Welcome David -- <% /*session.getAttribute("login")*/ %><a href="logout.jsp">Logout?</a></h2>
 	
 			
+		
 		<!-- Tie in the topNav file and where I want it. -->
 		<jsp:include page="../topNav.jsp" flush="true" />	
+		<h1 >New Reservation Booking</h1><br><br>
 	
     
     
