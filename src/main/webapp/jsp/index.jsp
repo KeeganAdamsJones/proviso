@@ -23,13 +23,13 @@ Poviso
 	<title>Proviso</title>
 	</head>
 	
-	<link rel="stylesheet" href="./css/site.css">
+	<link rel="stylesheet" href="/proviso/css/site.css">
 			
 	
 	<body>
 		
 			<div class="logo">
-				<img src="images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
+				<img src="/proviso/images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
 			</div>
 		
 			
@@ -37,6 +37,18 @@ Poviso
 		<jsp:include page="topNav.jsp" flush="true" />	
 	
 		
+		<%
+		
+		
+			
+					
+			if(request.getParameter("reservation_id")!=null)
+			{
+				// TODO: Make it purdy
+				out.println(" WOOOOOOOOOOHOO:");
+				out.println(request.getParameter("reservation_id"));
+			}
+		%>
 		<main>
 				<h1>Book your stay in our first class luxury suites today!</h1>
 			

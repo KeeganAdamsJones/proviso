@@ -22,7 +22,7 @@ References: Some of the code below was taken and adjusted from the site https://
 	</div>
 	
 	<!-- Topnav File -->
-	<jsp:include page="topNav.jsp" flush="true" />
+	<jsp:include page="../topNav.jsp" flush="true" />
 	
 	<main>
 		<!-- This displays a message if the user is successfully registered. -->
@@ -145,6 +145,6 @@ References: Some of the code below was taken and adjusted from the site https://
     %>
 	</main>
 	<!-- Page Footer File -->
-	<jsp:include page="footer.jsp" flush="true" />
+	<jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>
