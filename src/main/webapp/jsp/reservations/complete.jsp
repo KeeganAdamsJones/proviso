@@ -81,19 +81,20 @@ Poviso
 	
     %>
         
-    <!-- 2: Output Summary of Form to confirm new reservation -->
+    <!-- 2: Output Summary of Form to confirm new reservation number -->
     	<h1>RESERVATION BOOKED</h1>
     	
     	<div class="center-form width-35">
-			New reservation: 
+			Your new reservation confirmation number is: 
 		<%= reservation_id %>
         </div>
         
+   		<br><br><br>
        
        
 
-    <!-- Page footer	 -->
-		<!--  jsp:include page="footer.jsp" flush="true" />-->
+    	<!-- Page footer	 -->
+		 <jsp:include page="../footer.jsp" flush="true" />
 	
 		 
 	
