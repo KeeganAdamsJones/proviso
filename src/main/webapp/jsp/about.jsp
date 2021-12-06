@@ -23,13 +23,13 @@ Poviso
 	<title>Proviso</title>
 	</head>
 	
-	<link rel="stylesheet" href="./css/site.css">
+	<link rel="stylesheet" href="../css/site.css">
 			
 	
 	<body>
 		
 			<div class="logo">
-				<img src="images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
+				<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
 			</div>
 		
 			
@@ -37,21 +37,17 @@ Poviso
 		<jsp:include page="topNav.jsp" flush="true" />	
 	
 		
-		<main>
+		<main id="about_us_page">
 			<h1>About Us</h1>
-			<h1>Get to Know Proviso</h1>
+			<h2 style="text-align:center;">Get to Know Proviso</h2>
 			
-			<p>
-				Text goes here about Proviso.
-			</p>
+			<p style="text-align:center; width:60%;">
+				Welcome to Proviso! Our company Proviso has been in business for over 50 years and is a trusted and well known name 
+				in the travel industry. Our new Proviso site has been designed to allow all our customers to be able to register an account
+				with us and then log in and book any of their vacations at our incredible number of supported hotels across the globe.
 				
-				<div class='hotelImg'>
-					<img src="images/hotelRoom.jpeg" alt="hotel room photo" width="500" >
-				</div>
-		
-		
-	
-		
+			</p>
+
 		</main>
 		
 		<!-- Page footer	 -->

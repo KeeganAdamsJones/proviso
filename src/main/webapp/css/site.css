@@ -39,6 +39,10 @@ h1 {
 .foot {
 	color: #333;
 }
+#about_us_page {
+    width: 100%;
+    text-align:center;
+}
 
 /* The box around the topnav */
 .topNav {    
