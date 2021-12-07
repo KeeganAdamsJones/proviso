@@ -8,7 +8,7 @@
 Keegan Jones
 CSD - 460 Capstone
 Poviso
-11/23/2021
+12/7/2021
  -->   
  
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ Poviso
 		</div>
 		
 		<!-- 2: Create Form to accept new reservation -->
-   		<h2 style="float:right;font-size:1em;">Welcome David -- <% /*session.getAttribute("login")*/ %><a href="logout.jsp">Logout?</a></h2>
+   		<h2 style="float:right;font-size:1em;">Welcome -- <% /*session.getAttribute("login")*/ %><a href="logout.jsp">Logout?</a></h2>
 		
 			
 	<!-- Tie in the topNav file and where I want it. -->
@@ -39,25 +39,39 @@ Poviso
     
    
     <!--  1: Create a form that takes in the ReservationID -->
-    <h1 >Search Reservation Booking</h1><br><br>
+    <h1 >Your Reservation</h1><br><br>
     	
     	<div class="center-form width-35">
-	
-		<form>
-			<input type="hidden" name="action" value="searchReservation" />
-			
-			<label for="searchReservation">Please Enter Reservation Number:</label>
-		        <input type="text" id="searchReservation" name="searchReservation">
-		        <!-- TODO: Add a button -->
-		        <br><br>
-    	</form>
+		
+    	<%
+    	
+    	
+    	String id = request.getParameter("searchReservation");
+    	
+    	System.out.println(id);
+    	long looong_id = Long.parseLong(id);
+		
+		
+    	proviso.service.impl.JdbcReservationDao reservationDao = new proviso.service.impl.JdbcReservationDao(); 
+    	proviso.model.Reservation res = reservationDao.find(looong_id);
+		
+		
+    	// TODO: If res not found, display error
+    	
+    	// TODO: Fill out the rest of the res stuff
+    	
+    	%>
+    	
+    	<p>Reservation id: <%=res.getReservation_id()%> </p>
+    	<br><br>
+    	<p>Room Size: <%=res.getRoomSize() %> </p>
+    	<p>Amenities: <%=res.getAmenities() %> </p>
+    	<p>Guests: <%=res.getGuests() %> </p>
+    	<p>Loyalty Points: <%=res.getLoyaltyPoints() %> </p>
+    	<p></p>
     	</div>
     	
-    <!--  2: Server-side lookup -->
-    
-    
-    <!--  3: Page that displays the (previously created) reservation -->
-        
+          
         
     	
     	<!-- Page footer	 -->
