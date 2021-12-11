@@ -52,9 +52,7 @@ Poviso
     
         
     <!-- 2: Create Form to accept new reservation -->
-    	<h1 >New Reservation Booking</h1><br><br>
     	<h2> <% /*session.getAttribute("login")*/ %></h2>
-    	<h2><a href="logout.jsp">Logout</a></h2>
     	
     	<div class="center-form width-35">
 	
