@@ -46,8 +46,7 @@ Poviso
 		
 		<!-- Tie in the topNav file and where I want it. -->
 		<jsp:include page="../topNav.jsp" flush="true" />	
-		<h1 >New Reservation Booking</h1><br><br>
-	
+		
     
     
         
