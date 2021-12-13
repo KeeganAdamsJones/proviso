@@ -22,7 +22,7 @@ References: Some of the code below was taken and adjusted from the site https://
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="./css/site.css">
+<link rel="stylesheet" href="../css/site.css">
 <title>Login</title>
 </head>
 <body>
@@ -45,19 +45,21 @@ References: Some of the code below was taken and adjusted from the site https://
 				out.println(request.getAttribute("errorMsg"));
 			}
 		%>
-	
-		<form method ="post" name="loginform" onsubmit="return validate();">
-            <label for="user_name">Enter Email/Username: </label>
-            	<input type="text" name="user_name"><br>
-            <label for="password">Enter Password: </label>
-            	<input type="password" name="password"><br>
-            <p>
-            	<input type ="submit" name="login_button" value="Login"> 
-            </p><br>
-            <p>
-            	<a href="../registration.jsp">Don't have an account? Click here to sign up</a><br>
-            </p>
-        </form>
+		<br><br>
+		<div class="center-form">
+			<form method ="post" name="loginform" onsubmit="return validate();">
+	            <label for="user_name">Enter Email/Username: </label>
+	            	<input type="text" name="user_name"><br>
+	            <label for="password">Enter Password:&emsp;&emsp;&emsp;</label>
+	            	<input type="password" name="password"><br>
+	            <p>
+	            	<input type ="submit" name="login_button" value="Login"> 
+	            </p><br>
+	            <p>
+	            	<a href="/proviso/store/?action=showRegistrationPage">Don't have an account? Click here to sign up</a><br>
+	            </p>
+	        </form>
+        </div>
 	
 	<!-- The JavaScript below checks to see if the login fields are empty or not before continuing. -->
 		<script>

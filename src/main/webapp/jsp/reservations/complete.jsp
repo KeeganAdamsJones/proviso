@@ -27,7 +27,7 @@ Poviso
 		</div>
 		
 		<!-- 2: Create Form to accept new reservation -->
-   		<h2 style="float:right;font-size:1em;">Welcome David -- <% /*session.getAttribute("login")*/ %><a href="logout.jsp">Logout?</a></h2>
+   		<h2 style="float:right;font-size:1em;">Welcome David -- <% /*session.getAttribute("login")*/ %><a href="/proviso/store/?action=logoutUser">Logout?</a></h2>
 		
 			
 		<!-- Tie in the topNav file and where I want it. -->
@@ -91,7 +91,7 @@ Poviso
 			Your new reservation confirmation number is: 
 		<%= reservation_id %>
         </div>
-        <div><a href="../loyaltypoints.jsp">Click Here</a> if you'd like to view your current loyalty points.</div>
+        <div><a href="/proviso/store/?action=showLoyaltyPoints">Click Here</a> if you'd like to view your current loyalty points.</div>
         
    		<br><br><br>
        

@@ -17,10 +17,10 @@ Poviso
 		loading the page, if the user is not signed in, 
 		they are redirected to the login page. -->
 		<%
-			//if(session.getAttribute("login")==null || session.getAttribute("login")==" ")
-			//{
-			//	response.sendRedirect("login/login.jsp");
-			//}
+			if(session.getAttribute("login")==null || session.getAttribute("login")==" ")
+			{
+				response.sendRedirect("/proviso/store/?action=showLoginPage");
+			}
 		%>
 		
  <!DOCTYPE html>
@@ -40,7 +40,7 @@ Poviso
 				<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148" style="float:center;clear:both;overflow:auto;">
 			</div>
 			<!-- 2: Create Form to accept new reservation -->
-    		<h2 style="float:right;font-size:1em;">Welcome David -- <% /*session.getAttribute("login")*/ %><a href="logout.jsp">Logout?</a></h2>
+    		<h2 style="float:right;font-size:1em;">Welcome David -- <% /*session.getAttribute("login")*/ %><a href="/proviso/store/?action=logoutUser">Logout?</a></h2>
 	
 			
 		
@@ -53,7 +53,6 @@ Poviso
     <!-- 2: Create Form to accept new reservation -->
     	<h1 >New Reservation Booking</h1><br><br>
     	<h2> <% /*session.getAttribute("login")*/ %></h2>
-    	<h2><a href="logout.jsp">Logout</a></h2>
     	
     	<div class="center-form width-35">
 	
