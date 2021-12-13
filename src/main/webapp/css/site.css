@@ -16,7 +16,10 @@ h1 {
     text-align:center;
 }
 
-
+#center_login_form {
+	text-align: center;
+	width: 100%;
+}
 
 .center-form {
 	display: flex;

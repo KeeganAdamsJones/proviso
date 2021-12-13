@@ -91,7 +91,7 @@ Poviso
 			Your new reservation confirmation number is: 
 		<%= reservation_id %>
         </div>
-        <div><a href="../loyaltypoints.jsp">Click Here</a> if you'd like to view your current loyalty points.</div>
+        <div><a href="/proviso/store/?action=showLoyaltyPoints">Click Here</a> if you'd like to view your current loyalty points.</div>
         
    		<br><br><br>
        

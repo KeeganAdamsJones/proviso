@@ -13,12 +13,12 @@ References: Some of the code below was taken and adjusted from the site https://
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="./css/site.css">
+<link rel="stylesheet" href="../css/site.css">
 <title>Registration</title>
 </head>
 <body>
 	<div class="logo">
-		<img src="images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
+		<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148">
 	</div>
 	
 	<!-- Topnav File -->
@@ -32,6 +32,7 @@ References: Some of the code below was taken and adjusted from the site https://
 				out.println(request.getAttribute("successfulMsg"));
 			}
 		%>
+		<br><br>
 		<form method="post" onsubmit="return validate();">
         <p>
             <label for="fname">First Name: </label>
@@ -48,7 +49,7 @@ References: Some of the code below was taken and adjusted from the site https://
             <input type="submit" name="register_button" value="Register">
         </p><br>
         <p>
-        	<a href="login.jsp">Already have an account? Click here to sign in instead</a><br>
+        	<a href="/proviso/store/?action=showLoginPage">Already have an account? Click here to sign in instead</a><br>
         </p>
     </form>
     

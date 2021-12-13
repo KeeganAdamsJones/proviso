@@ -17,10 +17,10 @@ Poviso
 		loading the page, if the user is not signed in, 
 		they are redirected to the login page. -->
 		<%
-			//if(session.getAttribute("login")==null || session.getAttribute("login")==" ")
-			//{
-			//	response.sendRedirect("../login/login.jsp");
-			//}
+			if(session.getAttribute("login")==null || session.getAttribute("login")==" ")
+			{
+				response.sendRedirect("/proviso/store/?action=showLoginPage");
+			}
 		%>
 		
  <!DOCTYPE html>
