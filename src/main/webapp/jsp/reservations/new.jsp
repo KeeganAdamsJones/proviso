@@ -40,7 +40,7 @@ Poviso
 				<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148" style="float:center;clear:both;overflow:auto;">
 			</div>
 			<!-- 2: Create Form to accept new reservation -->
-    		<h2 style="float:right;font-size:1em;">Welcome David -- <% /*session.getAttribute("login")*/ %><a href="/proviso/store/?action=logoutUser">Logout?</a></h2>
+    		<h2 style="float:right;font-size:1em;">Welcome  -- <% /*session.getAttribute("login")*/ %><a href="/proviso/store/?action=logoutUser">Logout?</a></h2>
 	
 			
 		
@@ -58,9 +58,18 @@ Poviso
 	
 		<form>
 			<input type="hidden" name="action" value="confirmReservation" />
-						
+			
+			<h3>Reservation Dates:</h3>			
+	        <!-- Check in and out dates -->
+	        <label for="checkIn">Check in:</label>
+			<input type="date" id="checkIn" name="checkIn">
+			
+			<label for="checkOut">Check out:</label>
+			<input type="date" id="checkOut" name="checkOut"><br><br>
+	        
 	        <!-- Room Size -->
-	        <label for="roomSize">Room Size:</label>
+	        <h3>Room Size:</h3>
+	        <label for="roomSize">Beds:</label>
 	        	<select name="roomSize" id="roomSize">
 				  <option value="doubleFull">Double Full Beds</option>
 				  <option value="queen">Queen Bed</option>

@@ -99,16 +99,16 @@ public class provisoServlet extends HttpServlet
 				case "logoutUser":
 					url = base + "login/logout.jsp";
 					break;
-				//TODO do I need this?	
+				//TODO do I need this for later?	
 				//case "customerDetails":
 				//	url = base + "customers/Details.jsp";
 				//	break;
-				//TODO do I need this?	
-				case "updateCustomer":
+			
+				//case "updateCustomer":
 				//	updateCustomer(request, response);
 				//	url = base + "customers/List.jsp";
 				//	break;
-					//TODO do I need this?	
+		
 				//case "deleteCustomer": 
 				//	deleteCustomer(request, response);
 				//	url = base + "customers/List.jsp";
@@ -126,9 +126,7 @@ public class provisoServlet extends HttpServlet
 					// This is coming from the /reservations/confirm.jsp
 					// Forward this to the /complete.jsp
 					url = base + "reservations/complete.jsp";
-					
 					break;
-				
 				case "updateReservation":
 					updateReservation(request, response);
 					url = base + "index.jsp";
@@ -204,6 +202,8 @@ public class provisoServlet extends HttpServlet
 	private void updateReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		Long reservation_id = Long.parseLong(request.getParameter("reservation_id"));
+		String checkIn = request.getParameter("checkIn");
+		String checkOut = request.getParameter("checkOut");		
 		String roomSize = request.getParameter("roomSize");
 		String amenities = request.getParameter("amenities");
 		String guests = request.getParameter("guests");
@@ -211,6 +211,8 @@ public class provisoServlet extends HttpServlet
 		String customer_id = request.getParameter("customer");
 		
 		Reservation updatedReservation = new Reservation();
+		updatedReservation.setCheckIn(checkIn);
+		updatedReservation.setCheckOut(checkOut);
 		updatedReservation.setReservation_id(reservation_id);
 		updatedReservation.setRoomSize(roomSize);
 		updatedReservation.setAmenities(amenities);

@@ -16,6 +16,11 @@ h1 {
     text-align:center;
 }
 
+h3 {
+    width: 100%;
+    text-align:center;
+}
+
 #center_login_form {
 	text-align: center;
 	width: 100%;

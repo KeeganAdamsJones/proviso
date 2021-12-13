@@ -44,8 +44,9 @@ public class JdbcReservationDao implements ReservationDao {
 				// long customer_id = newReservation.getCustomer_id();
 				long customer_id = 1;
 				
-				String sql = String.format("INSERT INTO reservation(roomSize, customer_id, amenities, guests, loyaltyPoints)" +
-						" values('%s', %s, '%s', '%s', %s);", 
+				String sql = String.format("INSERT INTO reservation(checkIn, checkOut, roomSize, customer_id, amenities, guests, loyaltyPoints)" +
+						" values('%s', '%s', '%s', %s, '%s', '%s', %s);", 
+						newReservation.getCheckIn(), newReservation.getCheckOut(),  						
 						newReservation.getRoomSize(), customer_id, 
 						newReservation.getAmenities(), newReservation.getGuests(), 
 						newReservation.getLoyaltyPoints());
@@ -86,7 +87,7 @@ public class JdbcReservationDao implements ReservationDao {
 			{
 				Statement s = conn.createStatement();
 				
-				String sql = "select reservation_id, roomSize, customer_id, amenities, guests, loyaltyPoints from reservation";
+				String sql = "select reservation_id, roomSize, customer_id, amenities, guests, loyaltyPoints, checkIn, checkOut from reservation";
 				
 				System.out.println(sql);
 				
@@ -100,11 +101,13 @@ public class JdbcReservationDao implements ReservationDao {
 						{
 							Reservation reservation = new Reservation();
 							reservation.setReservation_id(rs.getLong(1));
-							reservation.setRoomSize(rs.getString(2));
-							reservation.setCustomer_id(rs.getString(3));
-							reservation.setamenities(rs.getString(4));
-							reservation.setGuests(rs.getString(5));
-							reservation.setLoyaltyPoints(rs.getInt(6));
+							reservation.setCheckIn(rs.getString(2));
+							reservation.setCheckOut(rs.getString(3));
+							reservation.setRoomSize(rs.getString(4));
+							reservation.setCustomer_id(rs.getString(5));
+							reservation.setamenities(rs.getString(6));
+							reservation.setGuests(rs.getString(7));
+							reservation.setLoyaltyPoints(rs.getInt(8));
 							reservations.add(reservation);
 						}
 					}
@@ -138,7 +141,7 @@ public class JdbcReservationDao implements ReservationDao {
 			{
 				Statement s = conn.createStatement(); 
 				
-				String sql = "select reservation_id, roomSize, customer_id, amenities, guests, loyaltyPoints from reservation where reservation_id = " + key;
+				String sql = "select reservation_id, checkIn, checkOut, roomSize, customer_id, amenities, guests, loyaltyPoints, checkIn, checkOut from reservation where reservation_id = " + key;
 				
 				System.out.println(sql);
 				
@@ -150,7 +153,7 @@ public class JdbcReservationDao implements ReservationDao {
 					{
 						if (rs.next()) 
 						{
-							reservation = new Reservation(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6)); 
+							reservation = new Reservation(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)); 
 						}
 					}
 					finally { rs.close(); }
@@ -177,8 +180,8 @@ public class JdbcReservationDao implements ReservationDao {
 			try {
 				Statement s = conn.createStatement(); 
 				
-				String sql = String.format("UPDATE reservation SET reservation_id = '%s', roomSize = %s, customer_id = '%s', amenities = '%s', guests = %s WHERE loyaltyPoints = %s;", 
-						updatedReservation.getReservation_id(), updatedReservation.getRoomSize(), updatedReservation.getCustomer_id(), updatedReservation.getAmenities(), updatedReservation.getGuests(), updatedReservation.getLoyaltyPoints());
+				String sql = String.format("UPDATE reservation SET reservation_id = '%s', checkIn = %s, checkOut = %s, roomSize = %s, customer_id = '%s', amenities = '%s', guests = %s WHERE loyaltyPoints = %s;", 
+						updatedReservation.getReservation_id(), updatedReservation.getCheckIn(), updatedReservation.getCheckOut(), updatedReservation.getRoomSize(), updatedReservation.getCustomer_id(), updatedReservation.getAmenities(), updatedReservation.getGuests(), updatedReservation.getLoyaltyPoints());
 				
 				System.out.println(sql);
 				

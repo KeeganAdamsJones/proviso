@@ -27,7 +27,7 @@ Poviso
 		</div>
 		
 		<!-- 2: Create Form to accept new reservation -->
-   		<h2 style="float:right;font-size:1em;">Welcome David -- <% /*session.getAttribute("login")*/ %><a href="/proviso/store/?action=logoutUser">Logout?</a></h2>
+   		<h2 style="float:right;font-size:1em;">Welcome -- <% /*session.getAttribute("login")*/ %><a href="/proviso/store/?action=logoutUser">Logout?</a></h2>
 		
 			
 		<!-- Tie in the topNav file and where I want it. -->
@@ -37,7 +37,8 @@ Poviso
 
     
     <%
-    
+    String checkIn = request.getParameter("checkIn");
+    String checkOut = request.getParameter("checkOut");
     String roomSize = request.getParameter("roomSize");
 	//String amenities = request.getParameter("amenities");
 	String guests = request.getParameter("guests");
@@ -68,6 +69,8 @@ Poviso
 			
 	proviso.model.Reservation newReservation = new proviso.model.Reservation(); 
 	//newReservation.setReservation_id(reservation_id);
+	newReservation.setCheckIn(checkIn);
+	newReservation.setCheckOut(checkOut);
 	newReservation.setRoomSize(roomSize);
 	newReservation.setAmenities(amenities);
 	newReservation.setGuests(guests);
@@ -79,10 +82,22 @@ Poviso
 	long reservation_id = reservationDao.add(newReservation);
 
 	System.out.println(newReservation.toString());
-	System.out.println(String.format("Reservation{roomSize=%s, amenities=%s, guests=%s, loyaltyPoints=%s, customer_id=%s}", roomSize, amenities, guests, loyaltyPoints, customer_id));
+	System.out.println(String.format("Reservation{checkIn=%s, checkOut=%s, roomSize=%s, amenities=%s, guests=%s, loyaltyPoints=%s, customer_id=%s}", checkIn, checkOut, roomSize, amenities, guests, loyaltyPoints, customer_id));
 
+	// Check to make sure we succeeded
+	if (reservation_id > 0){
+		
+		String user = (String) session.getAttribute("login");
+		System.out.println("Adding loyalty points for user " + user + " number: " + pointsToAdd);
+		if(user!= "") {
+			proviso.service.impl.JdbcCustomerDao customerDao = new proviso.service.impl.JdbcCustomerDao(); 
+			customerDao.addLoyaltyPoints(user,pointsToAdd);
+		}
+	}
 	
     %>
+
+
         
     <!-- 2: Output Summary of Form to confirm new reservation number -->
     	<h1>RESERVATION BOOKED</h1>
@@ -90,8 +105,11 @@ Poviso
     	<div class="center-form width-35">
 			Your new reservation confirmation number is: 
 		<%= reservation_id %>
+        </div><br><br><br>
+        
+        <div class="center-form width-35">
+        	<a href="/proviso/store/?action=showLoyaltyPoints">Click Here</a> if you'd like to view your current loyalty points.
         </div>
-        <div><a href="/proviso/store/?action=showLoyaltyPoints">Click Here</a> if you'd like to view your current loyalty points.</div>
         
    		<br><br><br>
        

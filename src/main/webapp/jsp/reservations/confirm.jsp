@@ -30,7 +30,7 @@ Poviso
 		</div>
 		
 		<!-- 2: Create Form to accept new reservation -->
-   		<h2 style="float:right;font-size:1em;">Welcome David -- <% /*session.getAttribute("login")*/ %><a href="/proviso/store/?action=logoutUser">Logout?</a></h2>
+   		<h2 style="float:right;font-size:1em;">Welcome -- <% /*session.getAttribute("login")*/ %><a href="/proviso/store/?action=logoutUser">Logout?</a></h2>
 			
 		<!-- Tie in the topNav file and where I want it. -->
 		<jsp:include page="../topNav.jsp" flush="true" />	
@@ -51,11 +51,27 @@ Poviso
 			
 		<form>
 			<input type="hidden" name="action" value="createReservation" />
-						
+		
+			<h3>Reservation Dates:</h3>		
+			<!-- Check in date -->
+	        <input type="hidden" name="checkIn"
+	        	value="<%=request.getParameter("checkIn") %>" />
+	        <label for="checkIn">Check in:</label>
+	        <%=request.getParameter("checkIn") %>
+	        <br><br>
+	        
+	        <!-- Check out date -->
+	        <input type="hidden" name="checkOut"
+	        	value="<%=request.getParameter("checkOut") %>" />
+	        <label for="checkOut">Check out:</label>
+	        <%=request.getParameter("checkOut") %>
+	        <br><br>
+	        
+	        <h3>Room Size:</h3>	      
+			<!-- Room Size -->
 			<input type="hidden" name="roomSize" 
 				value="<%=request.getParameter("roomSize") %>" />
-	        <!-- Room Size -->
-	        <label for="roomSize">Room Size:</label>
+	        <label for="roomSize">Beds:</label>
 	        <%=request.getParameter("roomSize") %>
 	        <br><br>
 	        
