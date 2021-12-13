@@ -65,7 +65,7 @@ public class JdbcCustomerDao implements CustomerDao
 				}
 				finally { s.close(); }
 				
-				// TODO: Get the craeted customer_id from the insert
+				// TODO: Get the created customer_id from the insert
 				return customer_id;
 			}
 			catch(SQLException ex)

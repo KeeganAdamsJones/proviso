@@ -17,7 +17,7 @@ References: Some of the code below was taken and adjusted from the site https://
 <body>
 	<%
 		session.invalidate();
-		//response.sendRedirect("index.jsp");
+		response.sendRedirect("index.jsp");
 	%>
 </body>
 </html>
