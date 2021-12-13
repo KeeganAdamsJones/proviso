@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
     
 <!-- 
-Keegan Jones
+Keegan Jones - Michael McNulty
 CSD - 460 Capstone
 Poviso
-11/16/2021
+12/12/2021
  -->
 
 <!--  
@@ -29,7 +29,7 @@ Poviso
 	<body>
 		
 		<div class="logo">
-			<img src="./images/logo.jpeg" alt="Proviso Logo" width="200" height="148" style="float:center;clear:both;overflow:auto;">
+			<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148" style="float:center;clear:both;overflow:auto;">
 		</div>
 		
 		<!-- 2: Create Form to accept new reservation -->
@@ -49,15 +49,8 @@ Poviso
 			}
 		%>
 		<main>
-				<h1>Book your stay in our first class luxury suites today!</h1>
-			
-				
-				<div class='hotelImg'>
-					<img src="images/hotelRoom.jpeg" alt="hotel room photo" width="500" >
-				</div>
-		
-		
-	
+				<h1>Loyalty Points</h1>
+
 		
 		</main>
 		
