@@ -51,26 +51,27 @@ Poviso
 			
 		<form>
 			<input type="hidden" name="action" value="createReservation" />
-						
+		
+			<h3>Reservation Dates:</h3>		
 			<!-- Check in date -->
 	        <input type="hidden" name="checkIn"
 	        	value="<%=request.getParameter("checkIn") %>" />
-	        <label for="checkIn">Check in date:</label>
+	        <label for="checkIn">Check in:</label>
 	        <%=request.getParameter("checkIn") %>
 	        <br><br>
 	        
 	        <!-- Check out date -->
 	        <input type="hidden" name="checkOut"
 	        	value="<%=request.getParameter("checkOut") %>" />
-	        <label for="checkOut">Check out date:</label>
+	        <label for="checkOut">Check out:</label>
 	        <%=request.getParameter("checkOut") %>
 	        <br><br>
 	        
-	        	      
+	        <h3>Room Size:</h3>	      
 			<!-- Room Size -->
 			<input type="hidden" name="roomSize" 
 				value="<%=request.getParameter("roomSize") %>" />
-	        <label for="roomSize">Room Size:</label>
+	        <label for="roomSize">Beds:</label>
 	        <%=request.getParameter("roomSize") %>
 	        <br><br>
 	        

@@ -49,7 +49,7 @@ Poviso
 			<label for="searchReservation">Please Enter Reservation Number:</label>
 		        <input type="text" id="searchReservation" name="searchReservation">
 		        <!-- TODO: Add a button -->
-		        <br><br>
+		        
 		    
 		    <!-- Submit Button -->
 	        <input type="submit" value="Search" class="center">

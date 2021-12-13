@@ -58,16 +58,18 @@ Poviso
 	
 		<form>
 			<input type="hidden" name="action" value="confirmReservation" />
-						
+			
+			<h3>Reservation Dates:</h3>			
 	        <!-- Check in and out dates -->
-	        <label for="checkIn">Check in date:</label>
+	        <label for="checkIn">Check in:</label>
 			<input type="date" id="checkIn" name="checkIn">
 			
-			<label for="checkOut">Check out date:</label>
-			<input type="date" id="checkOut" name="checkOut">
+			<label for="checkOut">Check out:</label>
+			<input type="date" id="checkOut" name="checkOut"><br><br>
 	        
 	        <!-- Room Size -->
-	        <label for="roomSize">Room Size:</label>
+	        <h3>Room Size:</h3>
+	        <label for="roomSize">Beds:</label>
 	        	<select name="roomSize" id="roomSize">
 				  <option value="doubleFull">Double Full Beds</option>
 				  <option value="queen">Queen Bed</option>
