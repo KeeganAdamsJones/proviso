@@ -32,7 +32,7 @@ References: Some of the code below was taken and adjusted from the site https://
 	</div>
 		
 	<!-- 2: Create Form to accept new reservation -->
- 	<h2 style="float:right;font-size:1em;">Welcome David -- <% /*session.getAttribute("login")*/ %><a href="logout.jsp">Logout?</a></h2>
+ 	<h2 style="float:right;font-size:1em;">Welcome -- <% /*session.getAttribute("login")*/ %><a href="logout.jsp">Logout?</a></h2>
 	
 	<!-- Topnav File -->
 	<jsp:include page="../topNav.jsp" flush="true" />

@@ -64,6 +64,8 @@ Poviso
     	
     	<p>Reservation id: <%=res.getReservation_id()%> </p>
     	<br><br>
+    	<p>Check In: <%=res.getCheckIn() %> </p>
+    	<p>Check Out: <%=res.getCheckOut() %> </p>
     	<p>Room Size: <%=res.getRoomSize() %> </p>
     	<p>Amenities: <%=res.getAmenities() %> </p>
     	<p>Guests: <%=res.getGuests() %> </p>

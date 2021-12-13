@@ -190,6 +190,33 @@ public class JdbcCustomerDao implements CustomerDao
 		
 		
 	}
+	
+	@Override
+	public void addLoyaltyPoints(String userName, int numberPoints) {
+		Connection conn = db.getConn();
+		
+		if (conn != null) 
+		{
+			try 
+			{
+				Statement s = conn.createStatement();
+				String sql = "UPDATE customer SET loyaltyPoints = loyaltyPoints + " + 
+						numberPoints + 
+						" WHERE user_name = '" + userName + "'";
+				System.out.println(sql);
+				
+				try 
+				{
+					s.executeUpdate(sql);
+				}
+				finally { s.close(); }
+			}
+			catch (SQLException ex)
+			{
+				System.out.println("Sorry, we could not update customer: " + ex.getMessage());
+			}
+		}
+	}
 
 	@Override
 	public void remove(Long key) 
