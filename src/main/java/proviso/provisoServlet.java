@@ -96,6 +96,9 @@ public class provisoServlet extends HttpServlet
 				case "showRegistrationPage":
 					url = base + "login/registration.jsp";
 					break;
+				case "logoutUser":
+					url = base + "login/logout.jsp";
+					break;
 				//TODO do I need this?	
 				//case "customerDetails":
 				//	url = base + "customers/Details.jsp";
