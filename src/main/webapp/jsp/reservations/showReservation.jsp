@@ -74,7 +74,7 @@ Poviso
 		    	<p>Beds: <%=res.getRoomSize() %> </p>
 		    	
 		    	<h3 class="center-form">Amenities:</h3>
-		    	<p>You Chose: <%=res.getAmenities() %> </p>
+		    	<p> <%=res.getAmenities() %> </p>
 		    	
 		    	<h3 class="center-form">Guests</h3>
 		    	<p>Number of Guests: <%=res.getGuests() %> </p>
