@@ -66,7 +66,7 @@ References: Some of the code below was taken and adjusted from the site https://
     		var email_address= /^[\w\d\.]+\@[a-z A-Z\.]+\.[A-Z a-z]{1,4}$/;
     		
     		// this sets the allowed entries for the password for the user to enter.
-    		var password_choice=/^[A-Z a-z 0-9 !@#$%&*()<>]{8,20}$/;
+    		var password_choice=/^[A-Z a-z 0-9 !@#$%&*()<>]{6,12}$/;
     		
     		if(!first_name.test(fname.value) || fname.value=="")
    			{
@@ -112,16 +112,16 @@ References: Some of the code below was taken and adjusted from the site https://
     	try
     	{
     		Class.forName("com.mysql.jdbc.Driver");
-    		/* The credentials below need updated */
-    		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/proviso?useSSL=false","proviso_user", "MySQL5IsGreat!");
-				
+    		
+    		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/proviso?useSSL=false","proviso_user","MySQL5IsGreat!");
+    		
     		if(request.getParameter("register_button")!=null)
     		{
     			String first_name, last_name, user_name, password;
     			
-    			first_name=request.getParameter("first_name");
-    			last_name=request.getParameter("last_name");
-    			user_name=request.getParameter("user_name");
+    			first_name=request.getParameter("fname");
+    			last_name=request.getParameter("lname");
+    			user_name=request.getParameter("email");
     			password=request.getParameter("password");
     			
     			PreparedStatement pstmt=null;
