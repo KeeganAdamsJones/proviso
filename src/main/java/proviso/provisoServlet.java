@@ -84,8 +84,8 @@ public class provisoServlet extends HttpServlet
 				case "searchReservation":
 					url = base + "reservations/showReservation.jsp";
 					break;
-				case "newReservation":
-					url = base + "reservation/new.jsp";
+				case "showNewReservation":
+					url = base + "reservations/new.jsp";
 					break;
 				case "showLoyaltyPoint":
 					url = base + "loyaltypoints.jsp";

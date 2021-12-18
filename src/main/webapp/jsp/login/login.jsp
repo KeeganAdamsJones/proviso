@@ -48,7 +48,7 @@ References: Some of the code below was taken and adjusted from the site https://
 		<br><br>
 		<div class="center-form">
 			<!--  input type="hidden" name="action"  />-->
-			<form method ="post" name="loginform" value="newReservation" onsubmit="return validate();">
+			<form method ="post" name="loginform" onsubmit="return validate();">
 	            <label for="user_name">Enter Email/Username: </label>
 	            	<input type="text" name="user_name"><br>
 	            <label for="password">Enter Password:&emsp;&emsp;&emsp;</label>
@@ -138,7 +138,7 @@ References: Some of the code below was taken and adjusted from the site https://
 							session.setAttribute("login",dbuser_name);
 							// TODO: Move all of this before the HTML because this
 							// redirect will fail since we've already started sending HTML to the
-							// browser
+							// browser or fix it to work with the servelet
 							//response.sendRedirect("../reservations/new.jsp");
 						}
 					}
