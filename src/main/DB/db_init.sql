@@ -53,13 +53,13 @@ CREATE TABLE reservation (
 ); 
 
 -- insert customer statements 
-INSERT INTO customer(first_name, last_name, user_name, password)
+INSERT INTO customer(first_name, last_name, user_name, password, loyaltyPoints)
 	VALUES('Keegan', 'Jones', 'keeganadamsjones@gmail.com', 'pass1111', '0');
 
-INSERT INTO customer(first_name, last_name, user_name, password)
+INSERT INTO customer(first_name, last_name, user_name, password, loyaltyPoints)
 	VALUES('Nellie', 'Brooklyn', 'nelliebrooklyns@gmail.com', 'pass1112', '150');
 
-INSERT INTO customer(first_name, last_name, user_name, password)
+INSERT INTO customer(first_name, last_name, user_name, password, loyaltyPoints)
 	VALUES('Olivia', 'Grace', 'oliviagrace@gmail.com', 'pass1113', '300');
 
 

@@ -117,20 +117,22 @@ References: Some of the code below was taken and adjusted from the site https://
     		
     		if(request.getParameter("register_button")!=null)
     		{
-    			String first_name, last_name, user_name, password;
+    			String first_name, last_name, user_name, password, loyaltyPoints;
     			
     			first_name=request.getParameter("fname");
     			last_name=request.getParameter("lname");
     			user_name=request.getParameter("email");
     			password=request.getParameter("password");
+    			loyaltyPoints=request.getParameter("loyaltyPoints");
     			
     			PreparedStatement pstmt=null;
     			
-    			pstmt=con.prepareStatement("INSERT into customer(first_name,last_name,user_name,password) values(?,?,?,?)");
+    			pstmt=con.prepareStatement("INSERT into customer(first_name,last_name,user_name,password, loyaltyPoints) values(?,?,?,?,?)");
     			pstmt.setString(1,first_name);
     			pstmt.setString(2,last_name);
     			pstmt.setString(3,user_name);
     			pstmt.setString(4,password);
+    			pstmt.setString(5, loyaltyPoints);
     			
     			pstmt.executeUpdate();
     			
