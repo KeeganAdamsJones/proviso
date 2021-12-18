@@ -33,23 +33,57 @@ Poviso
 		</div>
 		
 		<!-- 2: Create Form to accept new reservation -->
-   		<h2 style="float:right;font-size:1em;">Welcome -- <% /*session.getAttribute("login")*/ %><a href="/proviso/store/?action=logoutUser">Logout?</a></h2>
+   		<h2 style="float:right;font-size:1em;">Welcome -- <% session.getAttribute("login"); %><a href="/proviso/store/?action=logoutUser">Logout?</a></h2>
 		
+		<!-- This checks to see if the user is signed in before 
+		loading the page, if the user is not signed in, 
+		they are redirected to the login page. -->
+		<%
+			if(session.getAttribute("login")==null || session.getAttribute("login")==" ")
+			{
+				response.sendRedirect("/proviso/store/?action=showLoginPage");
+			}
+		%>
 			
 		<!-- Tie in the topNav file and where I want it. -->
 		<jsp:include page="topNav.jsp" flush="true" />	
-	
 		
-		<%	
-			if(request.getParameter("reservation_id")!=null)
-			{
-				// TODO: Make it purdy
-				out.println(" WOOOOOOOOOOHOO:");
-				out.println(request.getParameter("reservation_id"));
-			}
-		%>
+		<%@ page import="java.sql.*" %>
+		
 		<main>
 				<h1>Loyalty Points</h1>
+				<%
+			    	try
+			    	{
+			    		Class.forName("com.mysql.jdbc.Driver");
+			    		
+			    		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/proviso?useSSL=false","proviso_user","MySQL5IsGreat!");
+			    		
+			    		if(request.getParameter("login")!=null)
+			    		{
+			    			String first_name, username, loyalty_points;
+			    			
+			    			username=request.getParameter("login");
+			    			
+			    			PreparedStatement pstmt=null;
+			    			
+			    			pstmt=con.prepareStatement("SELECT first_name, loyaltyPoints FROM customer WHERE user_name='username';");
+			    			
+			    			ResultSet rs = pstmt.executeQuery();
+			    			
+			    			while(rs.next()) {
+			    				System.out.println();  
+			    			
+			    			}
+			    		
+			    			con.close();
+			    		}
+			    	}
+			    	catch (Exception e)
+			    	{
+			    		out.println(e);
+			    	}
+			    %>
 
 		
 		</main>

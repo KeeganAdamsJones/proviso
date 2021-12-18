@@ -31,9 +31,26 @@ Poviso
 		<div class="logo">
 			<img src="./images/logo.jpeg" alt="Proviso Logo" width="200" height="148" style="float:center;clear:both;overflow:auto;">
 		</div>
+		<!-- This checks to see if the user is logged in to determine if it should show their login name or a "login" button. -->
 		
-		<!-- 2: Create Form to accept new reservation -->
-   		<h2 style="float:right;font-size:1em;">Welcome -- <% /*session.getAttribute("login")*/ %><a href="/proviso/store/?action=logoutUser">Logout?</a></h2>
+		<!-- Either this script or the other line beneath it need to be used to check if the user is logged in and determine what will be displayed. -->
+		<script>
+			if(session.getAttribute("login")==null || session.getAttribute("login")==" ")
+				{
+					document.getElementById('logoutButton').style.display'none';
+				}
+		</script>
+		
+		<%
+			if(session.getAttribute("login")==null || session.getAttribute("login")==" ")
+			{
+				// this doesn't work yet, it's a formatting issue.
+				// document.getElementById('logoutButton').style.display='none';
+			}
+		%>
+		
+		<h2 style="float:right;font-size:1em;">Welcome -- <% session.getAttribute("login"); %><a href="/proviso/store/?action=logoutUser" id="logoutButton">Logout?</a></h2>
+   		
 		
 			
 		<!-- Tie in the topNav file and where I want it. -->
