@@ -66,7 +66,7 @@ References: Some of the code below was taken and adjusted from the site https://
     		var email_address= /^[\w\d\.]+\@[a-z A-Z\.]+\.[A-Z a-z]{1,4}$/;
     		
     		// this sets the allowed entries for the password for the user to enter.
-    		var password_choice=/^[A-Z a-z 0-9 !@#$%&*()<>]{6,12}$/;
+    		var password_choice=/^[A-Z a-z 0-9 !@#$%&*()<>]{8,20}$/;
     		
     		if(!first_name.test(fname.value) || fname.value=="")
    			{
