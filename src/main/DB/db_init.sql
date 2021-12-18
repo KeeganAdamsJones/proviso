@@ -33,17 +33,18 @@ CREATE TABLE customer (
 	last_name		VARCHAR(75)		NOT NULL,
 	user_name		VARCHAR(75)		NOT NULL;
 	password		VARCHAR(75)		NOT NULL;
+	loyalty_points  INT             NOT NULL;
 	PRIMARY KEY(customer_id)
 );
 
 -- create reservation table 
 CREATE TABLE reservation (
 	reservation_id		INT 			NOT NULL 		AUTO_INCREMENT,
-	roomSize			Varchar(150)	Not Null, 
+	roomSize			VARCHAR(150)	NOT NULL, 
 	customer_id			INT				NOT NULL,
 	amenities			VARCHAR(75)		NOT NULL,
 	guests				VARCHAR(10)		NOT NULL,
-	loyaltyPoints		INT(150)		NOT NULL,
+	loyaltyPoints		INT(150)        NOT NULL,
 	
 	PRIMARY KEY(reservation_id),
 	CONSTRAINT fk_customer
@@ -52,14 +53,14 @@ CREATE TABLE reservation (
 ); 
 
 -- insert customer statements 
-INSERT INTO customer(first_name, last_name, user_name, password)
-	VALUES('Keegan', 'Jones', 'keeganadamsjones@gmail.com', 'pass1111');
+INSERT INTO customer(first_name, last_name, user_name, password, loyaltyPoints)
+	VALUES('Keegan', 'Jones', 'keeganadamsjones@gmail.com', 'pass1111', '0');
 
-INSERT INTO customer(first_name, last_name, user_name, password)
-	VALUES('Nellie', 'Brooklyn', 'nelliebrooklyns@gmail.com', 'pass1112');
+INSERT INTO customer(first_name, last_name, user_name, password, loyaltyPoints)
+	VALUES('Nellie', 'Brooklyn', 'nelliebrooklyns@gmail.com', 'pass1112', '150');
 
-INSERT INTO customer(first_name, last_name, user_name, password)
-	VALUES('Olivia', 'Grace', 'oliviagrace@gmail.com', 'pass1113');
+INSERT INTO customer(first_name, last_name, user_name, password, loyaltyPoints)
+	VALUES('Olivia', 'Grace', 'oliviagrace@gmail.com', 'pass1113', '300');
 
 
 INSERT INTO reservation(roomSize, customer_id, amenities, guests, loyaltyPoints)

@@ -112,25 +112,27 @@ References: Some of the code below was taken and adjusted from the site https://
     	try
     	{
     		Class.forName("com.mysql.jdbc.Driver");
-    		/* The credentials below need updated */
-    		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/proviso?useSSL=false","proviso_user", "MySQL5IsGreat!");
-				
+    		
+    		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/proviso?useSSL=false","proviso_user","MySQL5IsGreat!");
+    		
     		if(request.getParameter("register_button")!=null)
     		{
-    			String first_name, last_name, user_name, password;
+    			String first_name, last_name, user_name, password, loyaltyPoints;
     			
-    			first_name=request.getParameter("first_name");
-    			last_name=request.getParameter("last_name");
-    			user_name=request.getParameter("user_name");
+    			first_name=request.getParameter("fname");
+    			last_name=request.getParameter("lname");
+    			user_name=request.getParameter("email");
     			password=request.getParameter("password");
+    			loyaltyPoints=request.getParameter("loyaltyPoints");
     			
     			PreparedStatement pstmt=null;
     			
-    			pstmt=con.prepareStatement("INSERT into customer(first_name,last_name,user_name,password) values(?,?,?,?)");
+    			pstmt=con.prepareStatement("INSERT into customer(first_name,last_name,user_name,password, loyaltyPoints) values(?,?,?,?,?)");
     			pstmt.setString(1,first_name);
     			pstmt.setString(2,last_name);
     			pstmt.setString(3,user_name);
     			pstmt.setString(4,password);
+    			pstmt.setString(5, loyaltyPoints);
     			
     			pstmt.executeUpdate();
     			

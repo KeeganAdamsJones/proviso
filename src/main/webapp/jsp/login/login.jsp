@@ -18,73 +18,6 @@ References: Some of the code below was taken and adjusted from the site https://
 	}
 %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="../css/site.css">
-<title>Login</title>
-</head>
-<body>
-
-	<div class="logo">
-		<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148" style="float:center;clear:both;overflow:auto;">
-	</div>
-		
-	<!-- 2: Create Form to accept new reservation -->
- 	<h2 style="float:right;font-size:1em;">Welcome -- <% /*session.getAttribute("login")*/ %><a href="logout.jsp">Logout?</a></h2>
-	
-	<!-- Topnav File -->
-	<jsp:include page="../topNav.jsp" flush="true" />
-	
-	<main>
-		<!-- Displays an error message for issues with email or password. -->
-		<%
-			if(request.getAttribute("errorMsg")!=null)
-			{
-				out.println(request.getAttribute("errorMsg"));
-			}
-		%>
-		<br><br>
-		<div class="center-form">
-			<form method ="post" name="loginform" onsubmit="return validate();">
-	            <label for="user_name">Enter Email/Username: </label>
-	            	<input type="text" name="user_name"><br>
-	            <label for="password">Enter Password:&emsp;&emsp;&emsp;</label>
-	            	<input type="password" name="password"><br>
-	            <p>
-	            	<input type ="submit" name="login_button" value="Login"> 
-	            </p><br>
-	            <p>
-	            	<a href="/proviso/store/?action=showRegistrationPage">Don't have an account? Click here to sign up</a><br>
-	            </p>
-	        </form>
-        </div>
-	
-	<!-- The JavaScript below checks to see if the login fields are empty or not before continuing. -->
-		<script>
-			function validate()
-			{
-				var user_name = document.loginform.user_name;
-				var password = document.loginform.password;
-				
-				if (user_name.value == null || user_name.value == "")
-				{
-					window.alert("Email field empty");
-					user_name.focus();
-					return false;
-				}
-				if (password.value == null || password.value == "")
-				{
-					window.alert("Password field empty");
-					password.style.background = "#8B0000";
-					password.focus();
-					return false;
-				}
-				return true;
-			}
-		</script>
-		
 		<!-- This imports the SQL needed to check the login info against the database. -->
 		<%@ page import="java.sql.*" %>
 		
@@ -137,9 +70,11 @@ References: Some of the code below was taken and adjusted from the site https://
 							session.setAttribute("login",dbuser_name);
 							// TODO: Move all of this before the HTML because this
 							// redirect will fail since we've already started sending HTML to the
-							// browser
-							response.sendRedirect("../reservations/new.jsp");
+							// browser or fix it to work with the servelet
+							response.sendRedirect("/proviso/store/?action=showBooking");
+							
 						}
+					
 					}
 					else
 					{
@@ -154,6 +89,76 @@ References: Some of the code below was taken and adjusted from the site https://
 			}
 		
 		%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../css/site.css">
+<title>Login</title>
+</head>
+<body>
+
+	<div class="logo">
+		<img src="../images/logo.jpeg" alt="Proviso Logo" width="200" height="148" style="float:center;clear:both;overflow:auto;">
+	</div>
+		
+	<!-- 2: Create Form to accept new reservation -->
+ 	<h2 style="float:right;font-size:1em;">Welcome -- <% session.getAttribute("login"); %><a href="logout.jsp">Logout?</a></h2>
+	
+	<!-- Topnav File -->
+	<jsp:include page="../topNav.jsp" flush="true" />
+	
+	<main>
+		<!-- Displays an error message for issues with email or password. -->
+		<%
+			if(request.getAttribute("errorMsg")!=null)
+			{
+				out.println(request.getAttribute("errorMsg"));
+			}
+		%>
+		<br><br>
+		<div class="center-form">
+			<!--  input type="hidden" name="action"  />-->
+			<form method ="post" name="loginform" onsubmit="return validate();">
+	            <label for="user_name">Enter Email/Username: </label>
+	            	<input type="text" name="user_name"><br>
+	            <label for="password">Enter Password:&emsp;&emsp;&emsp;</label>
+	            	<input type="password" name="password"><br>
+	            <p>
+	            	<input type ="submit" name="login_button" value="Login"> 
+	            </p><br>
+	            <p>
+	            	<a href="/proviso/store/?action=showRegistrationPage">Don't have an account? Click here to sign up</a><br>
+	            </p>
+	        </form>
+        </div>
+	
+	<!-- The JavaScript below checks to see if the login fields are empty or not before continuing. -->
+		<script>
+			function validate()
+			{
+				var user_name = document.loginform.user_name;
+				var password = document.loginform.password;
+				
+				if (user_name.value == null || user_name.value == "")
+				{
+					window.alert("Email field empty");
+					user_name.focus();
+					return false;
+				}
+				if (password.value == null || password.value == "")
+				{
+					window.alert("Password field empty");
+					password.style.background = "#8B0000";
+					password.focus();
+					return false;
+				}
+				return true;
+			}
+		</script>
+		
+
 		
 		
 	</main>
