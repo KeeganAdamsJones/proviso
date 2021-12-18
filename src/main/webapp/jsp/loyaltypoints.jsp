@@ -67,7 +67,7 @@ Poviso
 			    			
 			    			PreparedStatement pstmt=null;
 			    			
-			    			pstmt=con.prepareStatement("SELECT first_name, loyalty_points FROM customer WHERE user_name='username';");
+			    			pstmt=con.prepareStatement("SELECT first_name, loyaltyPoints FROM customer WHERE user_name='username';");
 			    			
 			    			ResultSet rs = pstmt.executeQuery();
 			    			
